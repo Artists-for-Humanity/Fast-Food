@@ -8,28 +8,31 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('menu-scene', new URL('../../assets/burger.png', import.meta.url).href);
+    this.load.image('burger', new URL('../../assets/burger.png', import.meta.url).href);
   }
 
   create() {
-    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'menu-scene');
+    this.add.image(200, 650, 'burger');
 
     WebFont.load({
       custom: {
-        families: ['Space Mono'],
+        families: ['Play'],
       },
       active: () => {
         this.add
           .text(
-            this.game.config.width / 2,
-            this.game.config.height * (2.5 / 3),
-            'Press space to Start ',
+            this.game.config.width - 250,
+            this.game.config.height - 300,
+            // this.game.config.width / 2,
+            // this.game.config.height / 2,
+            'PRESS SPACEBAR TO START',
             {
-              fontFamily: 'Space Mono',
-              fontSize: '32px',
-              fontStyle: 'bold',
-              fill: colors.white,
+              fontFamily: 'Play',
+              fontSize: '50px',
+              fill: colors.black,
               align: 'center',
+              backgroundColor: 'white',
+              shadowColor: 'red',
             }
           )
           .setOrigin(0.5);
