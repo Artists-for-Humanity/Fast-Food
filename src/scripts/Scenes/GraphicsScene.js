@@ -1,4 +1,4 @@
-let game;
+/*let game;
 let gameOptions = {
     firstPlatformPosition: 2 / 10,
     gameGravity: 1700,
@@ -7,30 +7,7 @@ let gameOptions = {
     platformVerticalDistanceRange: [150, 250],
     platformHeight: 50
 }
-window.onload = function() {
-    let gameConfig = {
-        type: Phaser.AUTO,
-        backgroundColor:0x87ceea,
-        scale: {
-            mode: Phaser.Scale.FIT,
-            autoCenter: Phaser.Scale.CENTER_BOTH,
-            parent: "thegame",
-            width: 750,
-            height: 1334
-        },
-        physics: {
-            default: "arcade",
-            arcade: {
-                gravity: {
-                    y: gameOptions.gameGravity
-                }
-            }
-        },
-        scene: playGame
-    }
-    game = new Phaser.Game(gameConfig);
-    window.focus();
-}
+
 class playGame extends Phaser.Scene {
     constructor() {
         super("PlayGame");
@@ -254,4 +231,4 @@ class playGame extends Phaser.Scene {
             }
         }, this);
     }
-}
+}*/
