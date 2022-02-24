@@ -12,10 +12,17 @@
     src: url('./assets/fonts/Play-Bold.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts//Poppins.zip') format('truetype');
+}
+
 html {
     box-sizing: border-box;
     height: 100%;
-    background-color: #FFD88E;
+    background-color: #323335;
     color: white;
 }
 
@@ -44,9 +51,39 @@ h1 {
     font-family: 'Space Mono', cursive;
 }
 
-.header {
+.fastTitle {
     color: red;
-    display: flex;
-    justify-content: center;
+}
 
+.head{
+font-size:25px;
+text-align:center;
+font-weight: 700;
+font-family: 'Poppins';
+}
+
+.about{
+    text-align:left;
+    margin-right:500px;
+    font-family: 'Poppins';
+}
+
+.subtitle{
+    font-size:20px;
+    font-weight: 700;
+    font-family: 'Poppins';
+
+}
+
+.text{
+    color:white;
+    font-size:15px;
+    font-family: 'Poppins';
+
+}
+
+.meet{
+    /* text-align:left; */
+    margin-right:500px;
+    font-family: 'Poppins';
 }
