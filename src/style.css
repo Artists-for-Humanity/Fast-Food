@@ -19,13 +19,6 @@
     src: url('./assets/fonts//Poppins.zip') format('truetype');
 }
 
-html {
-    box-sizing: border-box;
-    height: 100%;
-    background-color: #323335;
-    color: white;
-}
-
 *,
 *:before,
 *:after {
@@ -33,13 +26,16 @@ html {
 }
 
 body {
+    background-color: #323335;
     height: 100%;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    /* max-width: 1000px; */
+    color: white;
+    margin:auto;
+    /* padding-left: 20px;
+    padding-right: 20px; */
 }
+
+
 
 img,
 canvas {
@@ -56,7 +52,7 @@ h1 {
 }
 
 .head{
-font-size:25px;
+font-size:50px;
 text-align:center;
 font-weight: 700;
 font-family: 'Poppins';
@@ -83,7 +79,112 @@ font-family: 'Poppins';
 }
 
 .meet{
-    /* text-align:left; */
-    margin-right:500px;
+    text-align:left;
+    margin: right 100px;
     font-family: 'Poppins';
+}
+
+.canvas {
+    padding-top: 0px;
+}
+
+.container{
+    display:flex;
+    flex-direction:row;
+    height:auto;
+    padding:10px;
+    justify-content: center;
+}
+
+.column{
+    display:flex;
+    flex-direction:column;
+    padding-left:50px;
+    padding-right:50px;
+    width:400px;
+    padding-bottom: 40px;;
+}
+
+.box{
+    border-style:solid;
+    border-width:10px;
+    border-color:white;
+    padding:10px;
+}
+
+.box2{
+    margin-top: 40px;
+}
+
+
+.header{
+    font-weight:bold;
+    text-transform: capitalize;
+    font-size:30px;
+}
+
+.subtext{
+    text-transform: lowercase;
+    font-size:30px;
+}
+
+.section2{
+    margin:auto;
+    width:70%;
+}
+
+.subtitle{
+    font-size:50px;
+    text-align:center;
+    margin-bottom:50px;
+    margin-top:50px;
+}
+
+.column2{
+    display:flex;
+    flex-direction:column;
+    justify-content: left;
+}
+
+.object{
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-right:500px;
+}
+
+.header2{
+    font-size:40px;
+    font-weight:bold;
+}
+
+.subtext2{
+    font-size:40px;
+    font-family: 'Poppins';
+}
+
+.section3{
+    margin:auto;
+    width:70%;
+    font-family: 'Poppins';
+}
+
+.object2{
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-right:600px;
+}
+
+.name{
+    font-family: 'Poppins';
+    font-size:40px
+}
+
+.role{
+    font-family: 'Poppins';
+    font-size:40px
+}
+
+.description{
+    font-family: 'Poppins';
+    font-size:40px
 }
