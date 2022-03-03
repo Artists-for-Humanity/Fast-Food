@@ -16,7 +16,14 @@
     font-family: 'Poppins';
     font-weight: 400;
     font-style: normal;
-    src: url('./assets/fonts//Poppins.zip') format('truetype');
+    src: url('./assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair Display SC';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.ttf') format('truetype');
 }
 
 *,
@@ -175,8 +182,8 @@ font-family: 'Poppins';
 }
 
 .name{
-    font-family: 'Poppins';
-    font-size:40px
+    font-family: 'Playfair Display SC';
+    font-size:40px 
 }
 
 .role{
