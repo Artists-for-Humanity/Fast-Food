@@ -13,10 +13,24 @@
 }
 
 @font-face {
-    font-family: 'Poppins';
+    font-family: 'Poppins Medium';
     font-weight: 400;
     font-style: normal;
     src: url('./assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins Bold';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Poppins/Poppins-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins Light';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Poppins/Poppins-Light.ttf') format('truetype');
 }
 
 @font-face {
@@ -24,6 +38,13 @@
     font-weight: 400;
     font-style: normal;
     src: url('./assets/fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Lora-VariableFont_wght.ttf') format('truetype');
 }
 
 *,
@@ -115,7 +136,7 @@ font-family: 'Poppins';
 .box{
     border-style:solid;
     border-width:10px;
-    border-color:white;
+    border-color:rgb(199, 121, 20);
     padding:10px;
 }
 
@@ -128,6 +149,7 @@ font-family: 'Poppins';
     font-weight:bold;
     text-transform: capitalize;
     font-size:30px;
+    text-decoration-line: underline;
 }
 
 .subtext{
@@ -141,7 +163,7 @@ font-family: 'Poppins';
 }
 
 .subtitle{
-    font-size:50px;
+    font-size: 60px;
     text-align:center;
     margin-bottom:50px;
     margin-top:50px;
@@ -161,15 +183,17 @@ font-family: 'Poppins';
 
 .header2{
     font-size:40px;
-    font-weight:bold;
+    font-family:'Poppins Bold';
+    text-decoration-line: underline;
 }
 
 .subtext2{
-    font-size:40px;
-    font-family: 'Poppins';
+    font-size:25px;
+    font-family: 'Lora';
 }
 
 .section3{
+    padding-top: 20px; 
     margin:auto;
     width:70%;
     font-family: 'Poppins';
@@ -182,16 +206,16 @@ font-family: 'Poppins';
 }
 
 .name{
-    font-family: 'Playfair Display SC';
-    font-size:40px 
+    font-family: 'Poppins Medium';
+    font-size:30px 
 }
 
 .role{
-    font-family: 'Poppins';
-    font-size:40px
+    font-family: 'Playfair Display SC';
+    font-size:20px
 }
 
 .description{
-    font-family: 'Poppins';
-    font-size:40px
+    font-family: 'Lora';
+    font-size:25px
 }
