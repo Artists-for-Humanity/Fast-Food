@@ -9,6 +9,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
     this.setScale(0.5);
 
+    this.health = 3;
     return this;
   }
 }

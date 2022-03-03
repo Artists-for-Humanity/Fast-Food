@@ -20,7 +20,8 @@ export default class GameScene extends Phaser.Scene {
     this.foodSprites = [];
     this.spawnZone;
     this.customerTextures = [];
-    this.numCustomers = 1000;
+    this.numCustomers = 3;
+    this.hearts = [];
   }
 
   preload() {
@@ -49,9 +50,12 @@ export default class GameScene extends Phaser.Scene {
     this.line = new Line(this, this.game.config.width / 2, this.game.config.height / 2);
     this.createSpawnZone();
 
-    this.heart1 = new Heart(this, 60, 50);
-    this.heart2 = new Heart(this, 120, 50);
-    this.heart3 = new Heart(this, 180, 50);
+    //
+    // use for loop
+    //loop this.player.health time
+    for (var i = 0; i < this.player.health; i++) {
+      this.hearts.push(new Heart(this, (i + 1) * 60, 50));
+    }
 
     this.bubble = this.add.sprite(0, 0, 'bubble').setScale(0.15).setVisible(false);
     this.foodSprites = [
@@ -178,6 +182,9 @@ export default class GameScene extends Phaser.Scene {
 
       const collider = this.physics.add.overlap(this.counter, customer, (counter, customer) => {
         this.physics.world.removeCollider(collider);
+        this.hearts[this.player.health - 1].destroy();
+        this.player.health--;
+        //decrease this.player.health
         customer.body.stop();
       });
     });
