@@ -37,7 +37,10 @@ export default class MenuScene extends Phaser.Scene {
       },
     });
 
-    this.input.keyboard.on('keydown-SPACE', () => {
+    // Stops scrolling when you click spacebar
+    this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    this.input.keyboard.on('keydown-SPACE', (event) => {
       this.scene.start('GameScene');
     });
   }
