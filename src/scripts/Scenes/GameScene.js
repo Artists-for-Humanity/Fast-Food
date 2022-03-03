@@ -184,7 +184,6 @@ export default class GameScene extends Phaser.Scene {
         this.physics.world.removeCollider(collider);
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
-        //decrease this.player.health
         customer.body.stop();
       });
     });
