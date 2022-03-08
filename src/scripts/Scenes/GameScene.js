@@ -4,7 +4,6 @@ import Line from '../Sprites/Line';
 import Player from '../Sprites/Player';
 import Counter from '../Sprites/Counter';
 import LaserGroup from '../Sprites/Projectile'
-import Projectile from '../Sprites/Projectile'
 import Heart from '../Sprites/Heart';
 import WebFont from 'webfontloader';
 import { colors } from '../constants';
@@ -42,10 +41,10 @@ export default class GameScene extends Phaser.Scene {
     this.load.image('person8', new URL('../../assets/person8.png', import.meta.url).href);
     this.load.image('bubble', new URL('../../assets/thought-bubble.png', import.meta.url).href);
 
-    this.load.image('food1', new URL('../../assets/burger.png', import.meta.url).href);
-    this.load.image('projectile', new URL('../../assets/burger.png', import.meta.url).href);
-    this.load.image('food2', new URL('../../assets/pizza.png', import.meta.url).href);
-    this.load.image('food3', new URL('../../assets/fried-potatoes.png', import.meta.url).href);
+    this.load.image('food1', new URL('../../assets/food1.png', import.meta.url).href);
+    this.load.image('projectile', new URL('../../assets/food1.png', import.meta.url).href);
+    this.load.image('food2', new URL('../../assets/food2.png', import.meta.url).href);
+    this.load.image('food3', new URL('../../assets/food3.png', import.meta.url).href);
 
   }
 
@@ -72,9 +71,31 @@ export default class GameScene extends Phaser.Scene {
       this.add.sprite(-50, 55, 'person8').setScale(0.15).setVisible(false),
     ];
 
+    for (var i=0; i < this.player.health; i++) {
+      this.hearts.push(new Heart(this, (i + 1) * 60, 50));
+    }
+
+    WebFont.load({
+      custom: {
+        families: ['Play'],
+      },
+      active: () => {
+        this.add
+          .text(this.game.config.width - 100, 20, `Score: ${40}`, {
+            fontFamily: 'Play',
+            fontSize: '32px',
+            fontStyle: 'bold',
+            fill: colors.black,
+            align: 'right',
+          })
+          .setOrigin(1, 0);
+      },
+    });
+
     this.createCustomers();
     this.laserGroup = new LaserGroup(this);
     this.addEvents();
+
   }
 
   addEvents() {
@@ -88,6 +109,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update() {
+
     this.line.update();
     this.customers.map((customer) => {
       customer.update();
