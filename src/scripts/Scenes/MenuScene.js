@@ -16,27 +16,31 @@ export default class MenuScene extends Phaser.Scene {
 
     WebFont.load({
       custom: {
-        families: ['Space Mono'],
+        families: ['Play'],
       },
       active: () => {
         this.add
           .text(
             this.game.config.width / 2,
-            this.game.config.height * (2.5 / 3),
-            'Press space to Start ',
+            this.game.config.height - 50,
+            'PRESS SPACEBAR TO START',
             {
-              fontFamily: 'Space Mono',
-              fontSize: '32px',
-              fontStyle: 'bold',
-              fill: colors.white,
+              fontFamily: 'Play',
+              fontSize: '50px',
+              fill: colors.black,
               align: 'center',
+              backgroundColor: 'white',
+              shadowColor: 'red',
             }
           )
           .setOrigin(0.5);
       },
     });
 
-    this.input.keyboard.on('keydown-SPACE', () => {
+    // Stops scrolling when you click spacebar
+    this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    this.input.keyboard.on('keydown-SPACE', (event) => {
       this.scene.start('GameScene');
     });
   }
