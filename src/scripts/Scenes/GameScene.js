@@ -3,6 +3,8 @@ import Customer from '../Sprites/Customer';
 import Line from '../Sprites/Line';
 import Player from '../Sprites/Player';
 import Counter from '../Sprites/Counter';
+import LaserGroup from '../Sprites/Projectile'
+import Projectile from '../Sprites/Projectile'
 import Heart from '../Sprites/Heart';
 import WebFont from 'webfontloader';
 import { colors } from '../constants';
@@ -20,7 +22,8 @@ export default class GameScene extends Phaser.Scene {
     this.foodSprites = [];
     this.spawnZone;
     this.customerTextures = [];
-    this.numCustomers = 3;
+    this.numCustomers = 10;
+    this.laserGroup;
     this.hearts = [];
   }
 
@@ -38,10 +41,11 @@ export default class GameScene extends Phaser.Scene {
     this.load.image('person7', new URL('../../assets/person7.png', import.meta.url).href);
     this.load.image('person8', new URL('../../assets/person8.png', import.meta.url).href);
     this.load.image('bubble', new URL('../../assets/thought-bubble.png', import.meta.url).href);
+
     this.load.image('food1', new URL('../../assets/food1.png', import.meta.url).href);
     this.load.image('food2', new URL('../../assets/food2.png', import.meta.url).href);
     this.load.image('food3', new URL('../../assets/food3.png', import.meta.url).href);
-    this.load.image('food4', new URL('../../assets/food4.png', import.meta.url).href);
+    this.load.image('projectile', new URL('../../assets/food4.png', import.meta.url).href);
   }
 
   create() {
@@ -49,6 +53,19 @@ export default class GameScene extends Phaser.Scene {
     this.player = new Player(this, this.game.config.width / 2, this.game.config.height / 2);
     this.line = new Line(this, this.game.config.width / 2, this.game.config.height / 2);
     this.createSpawnZone();
+
+
+    this.laserGroup = new LaserGroup(this);
+    this.addEvents();
+  }
+
+  addEvents() {
+    this.input.on('pointerdown', pointer =>{
+      this.shootLaser();
+    })
+  }
+  shootLaser() {
+    this.laserGroup.fireLaser(this.player.x, this.player.y, this.line.getAngle());
 
     //
     // use for loop
@@ -153,6 +170,7 @@ export default class GameScene extends Phaser.Scene {
     for (let i = 0; i < this.numCustomers; i++) {
       let rt = this.add.renderTexture(-100, -100, 140, 140);
       const customerSprite = this.customerSprites[Math.floor(Math.random() * 8)];
+
       const foodSprite = this.foodSprites[Math.floor(Math.random() * 4)];
 
       rt.draw(this.bubble, rt.width / 2 + 30, rt.height / 2 - 25);
@@ -182,10 +200,13 @@ export default class GameScene extends Phaser.Scene {
 
       const collider = this.physics.add.overlap(this.counter, customer, (counter, customer) => {
         this.physics.world.removeCollider(collider);
+
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
         customer.body.stop();
       });
     });
   }
+
 }
+
