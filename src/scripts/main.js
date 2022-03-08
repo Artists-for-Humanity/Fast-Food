@@ -23,7 +23,8 @@ Pause, Load, Menu
  */
 // Set configuration for phaser game instance
 const config = {
-  type: Phaser.AUTO,
+  type: Phaser.CANVAS,
+  canvas: document.getElementById('game'),
   width: 960,
   height: 720,
   backgroundColor: '#FFA633',
@@ -37,7 +38,7 @@ const config = {
       gravity: {
         y: 0,
       },
-      debug: true,
+      debug: false,
     },
   },
   scene: [MenuScene, GameScene],
