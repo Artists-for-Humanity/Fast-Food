@@ -13,17 +13,38 @@
 }
 
 @font-face {
-    font-family: 'Poppins';
+    font-family: 'Poppins Medium';
     font-weight: 400;
     font-style: normal;
-    src: url('./assets/fonts//Poppins.zip') format('truetype');
+    src: url('./assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
 }
 
-html {
-    box-sizing: border-box;
-    height: 100%;
-    background-color: #323335;
-    color: white;
+@font-face {
+    font-family: 'Poppins Bold';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Poppins/Poppins-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins Light';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Poppins/Poppins-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair Display SC';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Lora-VariableFont_wght.ttf') format('truetype');
 }
 
 *,
@@ -33,13 +54,16 @@ html {
 }
 
 body {
+    background-color: #323335;
     height: 100%;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    /* max-width: 1000px; */
+    color: white;
+    margin:auto;
+    /* padding-left: 20px;
+    padding-right: 20px; */
 }
+
+
 
 img,
 canvas {
@@ -56,7 +80,7 @@ h1 {
 }
 
 .head{
-font-size:25px;
+font-size:50px;
 text-align:center;
 font-weight: 700;
 font-family: 'Poppins';
@@ -83,7 +107,115 @@ font-family: 'Poppins';
 }
 
 .meet{
-    /* text-align:left; */
-    margin-right:500px;
+    text-align:left;
+    margin: right 100px;
     font-family: 'Poppins';
+}
+
+.canvas {
+    padding-top: 0px;
+}
+
+.container{
+    display:flex;
+    flex-direction:row;
+    height:auto;
+    padding:10px;
+    justify-content: center;
+}
+
+.column{
+    display:flex;
+    flex-direction:column;
+    padding-left:50px;
+    padding-right:50px;
+    width:400px;
+    padding-bottom: 40px;;
+}
+
+.box{
+    border-style:solid;
+    border-width:10px;
+    border-color:rgb(199, 121, 20);
+    padding:10px;
+}
+
+.box2{
+    margin-top: 40px;
+}
+
+
+.header{
+    font-weight:bold;
+    text-transform: capitalize;
+    font-size:30px;
+    text-decoration-line: underline;
+}
+
+.subtext{
+    text-transform: lowercase;
+    font-size:30px;
+}
+
+.section2{
+    margin:auto;
+    width:70%;
+}
+
+.subtitle{
+    font-size: 60px;
+    text-align:center;
+    margin-bottom:50px;
+    margin-top:50px;
+}
+
+.column2{
+    display:flex;
+    flex-direction:column;
+    justify-content: left;
+}
+
+.object{
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-right:500px;
+}
+
+.header2{
+    font-size:40px;
+    font-family:'Poppins Bold';
+    text-decoration-line: underline;
+}
+
+.subtext2{
+    font-size:25px;
+    font-family: 'Lora';
+}
+
+.section3{
+    padding-top: 20px; 
+    margin:auto;
+    width:70%;
+    font-family: 'Poppins';
+}
+
+.object2{
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-right:600px;
+}
+
+.name{
+    font-family: 'Poppins Medium';
+    font-size:30px 
+}
+
+.role{
+    font-family: 'Playfair Display SC';
+    font-size:20px
+}
+
+.description{
+    font-family: 'Lora';
+    font-size:25px
 }

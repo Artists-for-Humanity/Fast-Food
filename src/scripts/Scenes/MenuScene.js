@@ -2,17 +2,17 @@ import Phaser from 'phaser';
 import WebFont from 'webfontloader';
 import { colors } from '../constants';
 
-export default class GameScene extends Phaser.Scene {
+export default class MenuScene extends Phaser.Scene {
   constructor() {
     super({ key: 'MenuScene' });
   }
 
   preload() {
-    this.load.image('burger', new URL('../../assets/burger.png', import.meta.url).href);
+    this.load.image('menu-scene', new URL('../../assets/burger.png', import.meta.url).href);
   }
 
   create() {
-    this.add.image(200, 650, 'burger');
+    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'menu-scene');
 
     WebFont.load({
       custom: {
@@ -21,10 +21,8 @@ export default class GameScene extends Phaser.Scene {
       active: () => {
         this.add
           .text(
-            this.game.config.width - 250,
-            this.game.config.height - 300,
-            // this.game.config.width / 2,
-            // this.game.config.height / 2,
+            this.game.config.width / 2,
+            this.game.config.height - 50,
             'PRESS SPACEBAR TO START',
             {
               fontFamily: 'Play',
@@ -39,7 +37,10 @@ export default class GameScene extends Phaser.Scene {
       },
     });
 
-    this.input.keyboard.on('keydown-SPACE', () => {
+    // Stops scrolling when you click spacebar
+    this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    this.input.keyboard.on('keydown-SPACE', (event) => {
       this.scene.start('GameScene');
     });
   }
