@@ -42,10 +42,11 @@ export default class GameScene extends Phaser.Scene {
     this.load.image('person8', new URL('../../assets/person8.png', import.meta.url).href);
     this.load.image('bubble', new URL('../../assets/thought-bubble.png', import.meta.url).href);
 
-    this.load.image('food1', new URL('../../assets/food1.png', import.meta.url).href);
-    this.load.image('food2', new URL('../../assets/food2.png', import.meta.url).href);
-    this.load.image('food3', new URL('../../assets/food3.png', import.meta.url).href);
-    this.load.image('projectile', new URL('../../assets/food4.png', import.meta.url).href);
+    this.load.image('food1', new URL('../../assets/burger.png', import.meta.url).href);
+    this.load.image('projectile', new URL('../../assets/burger.png', import.meta.url).href);
+    this.load.image('food2', new URL('../../assets/pizza.png', import.meta.url).href);
+    this.load.image('food3', new URL('../../assets/fried-potatoes.png', import.meta.url).href);
+
   }
 
   create() {
@@ -54,32 +55,11 @@ export default class GameScene extends Phaser.Scene {
     this.line = new Line(this, this.game.config.width / 2, this.game.config.height / 2);
     this.createSpawnZone();
 
-
-    this.laserGroup = new LaserGroup(this);
-    this.addEvents();
-  }
-
-  addEvents() {
-    this.input.on('pointerdown', pointer =>{
-      this.shootLaser();
-    })
-  }
-  shootLaser() {
-    this.laserGroup.fireLaser(this.player.x, this.player.y, this.line.getAngle());
-
-    //
-    // use for loop
-    //loop this.player.health time
-    for (var i = 0; i < this.player.health; i++) {
-      this.hearts.push(new Heart(this, (i + 1) * 60, 50));
-    }
-
     this.bubble = this.add.sprite(0, 0, 'bubble').setScale(0.15).setVisible(false);
     this.foodSprites = [
       this.add.sprite(2, 0, 'food1').setScale(0.1).setVisible(false),
       this.add.sprite(2, 0, 'food2').setScale(0.1).setVisible(false),
       this.add.sprite(2, 0, 'food3').setScale(0.1).setVisible(false),
-      this.add.sprite(2, 0, 'food4').setScale(0.1).setVisible(false),
     ];
     this.customerSprites = [
       this.add.sprite(-50, 55, 'person1').setScale(0.15).setVisible(false),
@@ -92,29 +72,19 @@ export default class GameScene extends Phaser.Scene {
       this.add.sprite(-50, 55, 'person8').setScale(0.15).setVisible(false),
     ];
 
-    WebFont.load({
-      custom: {
-        families: ['Play'],
-      },
-      active: () => {
-        this.add
-          .text(this.game.config.width - 100, 20, `Score: ${40}`, {
-            fontFamily: 'Play',
-            fontSize: '32px',
-            fontStyle: 'bold',
-            fill: colors.black,
-            align: 'right',
-          })
-          .setOrigin(1, 0);
-      },
-    });
-    // if(difficulty = 'easy') {
-    //   easyCustomrs = ['c1', 'c2']
-    // }
-    // else if (difficulty = 'medium')
-    //this.customers = [new Customer, new Customer]
-
     this.createCustomers();
+    this.laserGroup = new LaserGroup(this);
+    this.addEvents();
+  }
+
+  addEvents() {
+    this.input.on('pointerdown', pointer =>{
+      this.shootLaser();
+    })
+  }
+  shootLaser() {
+    this.laserGroup.fireLaser(this.player.x, this.player.y, this.line.getAngle());
+    
   }
 
   update() {
@@ -171,7 +141,7 @@ export default class GameScene extends Phaser.Scene {
       let rt = this.add.renderTexture(-100, -100, 140, 140);
       const customerSprite = this.customerSprites[Math.floor(Math.random() * 8)];
 
-      const foodSprite = this.foodSprites[Math.floor(Math.random() * 4)];
+      const foodSprite = this.foodSprites[Math.floor(Math.random() * 3)];
 
       rt.draw(this.bubble, rt.width / 2 + 30, rt.height / 2 - 25);
       rt.draw(foodSprite, rt.width / 2 + 32, rt.height / 2 - 25);
@@ -200,13 +170,12 @@ export default class GameScene extends Phaser.Scene {
 
       const collider = this.physics.add.overlap(this.counter, customer, (counter, customer) => {
         this.physics.world.removeCollider(collider);
-
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
+
         customer.body.stop();
       });
     });
   }
-
 }
 
