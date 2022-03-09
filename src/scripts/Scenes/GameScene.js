@@ -6,6 +6,7 @@ import Counter from '../Sprites/Counter';
 import LaserGroup from '../Sprites/Projectile'
 import Heart from '../Sprites/Heart';
 import WebFont from 'webfontloader';
+import GlobalState from './GlobalState';
 import {
   colors
 } from '../constants';
@@ -13,6 +14,7 @@ import {
 export default class GameScene extends Phaser.Scene {
   player;
   container;
+  scoreText;
 
   constructor() {
     super({
@@ -27,6 +29,7 @@ export default class GameScene extends Phaser.Scene {
     this.laserGroup;
     this.hearts = [];
     this.scoreText;
+
   }
 
   preload() {
@@ -96,22 +99,17 @@ export default class GameScene extends Phaser.Scene {
     }
 
 
-    WebFont.load({
-      custom: {
-        families: ['Play'],
-      },
-      active: () => {
-        this.scoreText = this.add
-          .text(this.game.config.width - 100, 20, `Score: ${scoreNum}`, {
-            fontFamily: 'Play',
-            fontSize: '32px',
-            fontStyle: 'bold',
-            fill: colors.black,
-            align: 'right',
-          })
-          .setOrigin(1, 0);
-      },
+
+    this.scoreText = this.add.text(this.game.config.width - 200, 30, '', {
+      fontFamily: 'Space Mono',
+      fontSize: '24px',
+      fontStyle: 'bold',
+      fill: colors.white,
+      align: 'center',
     });
+
+    this.globalState.resetScore();
+    this.setScoreText();
 
     this.createCustomers();
     this.laserGroup = new LaserGroup(this);
@@ -121,6 +119,8 @@ export default class GameScene extends Phaser.Scene {
       console.log("hello");
       laser.destroy();
       customer.destroy();
+      this.globalState.incrementScore();
+      this.setScoreText();
 
     });
 
@@ -137,6 +137,10 @@ export default class GameScene extends Phaser.Scene {
   shootLaser() {
     this.laserGroup.fireLaser(this.player.x, this.player.y, this.line.getAngle());
 
+  }
+
+  setScoreText() {
+    this.scoreText.setText(`SCORE: ${this.globalState.score}`);
   }
 
   update() {
