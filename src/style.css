@@ -6,7 +6,7 @@
 }
 
 @font-face {
-    font-family: 'Play';
+    font-family: 'Play Bold';
     font-weight: 700;
     font-style: normal;
     src: url('./assets/fonts/Play-Bold.ttf') format('truetype');
@@ -46,7 +46,12 @@
     font-style: normal;
     src: url('./assets/fonts/Lora-VariableFont_wght.ttf') format('truetype');
 }
-
+@font-face {
+    font-family: 'Fast';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Faster_One/FasterOne-Regular.ttf') format('truetype');
+}
 *,
 *:before,
 *:after {
@@ -75,8 +80,34 @@ h1 {
     font-family: 'Space Mono', cursive;
 }
 
+.titleBox {
+    text-align: center;
+} 
+
 .fastTitle {
     color: red;
+    font-size: 60px;
+    display: inline-block;
+    font-family: 'Fast';
+}
+
+.foodTitle {
+    color: orange;
+    font-size: 50px;
+    display: inline-block;
+    font-family: 'Play Bold';
+    padding-left: 10px;
+
+}
+
+.rateBox {
+    margin:auto;
+    width:70%;
+}
+
+.rating { 
+    font-size: 20px;
+    text-align:left;
 }
 
 .head{
@@ -133,7 +164,7 @@ font-family: 'Poppins';
     padding-bottom: 40px;;
 }
 
-.box{
+.box1{
     border-style:solid;
     border-width:10px;
     border-color:rgb(199, 121, 20);
@@ -142,6 +173,10 @@ font-family: 'Poppins';
 
 .box2{
     margin-top: 40px;
+    border-style:solid;
+    border-width:10px;
+    border-color:rgb(199, 121, 20);
+    padding:10px;
 }
 
 
@@ -218,4 +253,25 @@ font-family: 'Poppins';
 .description{
     font-family: 'Lora';
     font-size:25px
+}
+
+#thumbUP {
+    width: 40px;
+    height: 30px;
+    background: url(./assets/thumb-up.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+  }
+  
+#thumbDOWN {
+    width: 40px;
+    height: 30px;
+    background: url(./assets/thumb-up.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    
 }
