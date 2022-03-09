@@ -6,7 +6,9 @@ import Counter from '../Sprites/Counter';
 import LaserGroup from '../Sprites/Projectile'
 import Heart from '../Sprites/Heart';
 import WebFont from 'webfontloader';
-import { colors } from '../constants';
+import {
+  colors
+} from '../constants';
 
 export default class GameScene extends Phaser.Scene {
   player;
@@ -24,27 +26,45 @@ export default class GameScene extends Phaser.Scene {
     this.numCustomers = 10;
     this.laserGroup;
     this.hearts = [];
+    this.scoreText;
   }
 
   preload() {
-    this.load.image('player', new URL('../../assets/player.png', import.meta.url).href);
-    this.load.image('counter', new URL('../../assets/counter.png', import.meta.url).href);
-    this.load.image('line', new URL('../../assets/line.png', import.meta.url).href);
-    this.load.image('heart', new URL('../../assets/heart.png', import.meta.url).href);
-    this.load.image('person1', new URL('../../assets/person1.png', import.meta.url).href);
-    this.load.image('person2', new URL('../../assets/person2.png', import.meta.url).href);
-    this.load.image('person3', new URL('../../assets/person3.png', import.meta.url).href);
-    this.load.image('person4', new URL('../../assets/person4.png', import.meta.url).href);
-    this.load.image('person5', new URL('../../assets/person5.png', import.meta.url).href);
-    this.load.image('person6', new URL('../../assets/person6.png', import.meta.url).href);
-    this.load.image('person7', new URL('../../assets/person7.png', import.meta.url).href);
-    this.load.image('person8', new URL('../../assets/person8.png', import.meta.url).href);
-    this.load.image('bubble', new URL('../../assets/thought-bubble.png', import.meta.url).href);
+    this.load.image('player', new URL('../../assets/player.png',
+      import.meta.url).href);
+    this.load.image('counter', new URL('../../assets/counter.png',
+      import.meta.url).href);
+    this.load.image('line', new URL('../../assets/line.png',
+      import.meta.url).href);
+    this.load.image('heart', new URL('../../assets/heart.png',
+      import.meta.url).href);
+    this.load.image('person1', new URL('../../assets/person1.png',
+      import.meta.url).href);
+    this.load.image('person2', new URL('../../assets/person2.png',
+      import.meta.url).href);
+    this.load.image('person3', new URL('../../assets/person3.png',
+      import.meta.url).href);
+    this.load.image('person4', new URL('../../assets/person4.png',
+      import.meta.url).href);
+    this.load.image('person5', new URL('../../assets/person5.png',
+      import.meta.url).href);
+    this.load.image('person6', new URL('../../assets/person6.png',
+      import.meta.url).href);
+    this.load.image('person7', new URL('../../assets/person7.png',
+      import.meta.url).href);
+    this.load.image('person8', new URL('../../assets/person8.png',
+      import.meta.url).href);
+    this.load.image('bubble', new URL('../../assets/thought-bubble.png',
+      import.meta.url).href);
 
-    this.load.image('food1', new URL('../../assets/food1.png', import.meta.url).href);
-    this.load.image('projectile', new URL('../../assets/food1.png', import.meta.url).href);
-    this.load.image('food2', new URL('../../assets/food2.png', import.meta.url).href);
-    this.load.image('food3', new URL('../../assets/food3.png', import.meta.url).href);
+    this.load.image('food1', new URL('../../assets/food1.png',
+      import.meta.url).href);
+    this.load.image('projectile', new URL('../../assets/food1.png',
+      import.meta.url).href);
+    this.load.image('food2', new URL('../../assets/food2.png',
+      import.meta.url).href);
+    this.load.image('food3', new URL('../../assets/food3.png',
+      import.meta.url).href);
 
   }
 
@@ -71,17 +91,18 @@ export default class GameScene extends Phaser.Scene {
       this.add.sprite(-50, 55, 'person8').setScale(0.15).setVisible(false),
     ];
 
-    for (var i=0; i < this.player.health; i++) {
+    for (var i = 0; i < this.player.health; i++) {
       this.hearts.push(new Heart(this, (i + 1) * 60, 50));
     }
+
 
     WebFont.load({
       custom: {
         families: ['Play'],
       },
       active: () => {
-        this.add
-          .text(this.game.config.width - 100, 20, `Score: ${40}`, {
+        this.scoreText = this.add
+          .text(this.game.config.width - 100, 20, `Score: ${scoreNum}`, {
             fontFamily: 'Play',
             fontSize: '32px',
             fontStyle: 'bold',
@@ -96,16 +117,26 @@ export default class GameScene extends Phaser.Scene {
     this.laserGroup = new LaserGroup(this);
     this.addEvents();
 
+    this.physics.add.collider(this.laserGroup, this.customers, (laser, customer) => {
+      console.log("hello");
+      laser.destroy();
+      customer.destroy();
+
+    });
+
+
+
+
   }
 
   addEvents() {
-    this.input.on('pointerdown', pointer =>{
+    this.input.on('pointerdown', pointer => {
       this.shootLaser();
     })
   }
   shootLaser() {
     this.laserGroup.fireLaser(this.player.x, this.player.y, this.line.getAngle());
-    
+
   }
 
   update() {
@@ -130,7 +161,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createSpawnZone() {
-    const { height, width } = this.game.config;
+    const {
+      height,
+      width
+    } = this.game.config;
     const counterBody = this.counter.body;
 
     // extended this further than Counter
@@ -200,4 +234,3 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 }
-
