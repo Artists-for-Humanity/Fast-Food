@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 export default class Customer extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y, personIcon) {
+  constructor(scene, x, y, personIcon, foodSprite, customerSprite) {
     super(scene, x, y, personIcon);
 
     scene.add.existing(this);
@@ -10,6 +10,9 @@ export default class Customer extends Phaser.Physics.Arcade.Sprite {
     this.setScale(0.75);
 
     this.scene.physics.moveToObject(this, this.scene.player, 25);
+
+    this.foodSprite = foodSprite;
+    this.customerSprite = customerSprite;
 
     return this;
   }

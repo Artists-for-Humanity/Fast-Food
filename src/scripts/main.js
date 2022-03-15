@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
+import GlobalState from './Scenes/GlobalState';
 /* 
 Pseudocode
 Opening Screen
@@ -42,6 +43,14 @@ const config = {
     },
   },
   scene: [MenuScene, GameScene],
+  plugins: {
+    global: [{
+      key: 'GlobalState',
+      plugin: GlobalState,
+      start: false,
+      mapping: 'globalState'
+    }]
+  },
   //add menu scen back to array for start menu
   audio: {
     disableWebAudio: true,
