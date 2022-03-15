@@ -29,6 +29,7 @@ export default class GameScene extends Phaser.Scene {
     this.laserGroup;
     this.hearts = [];
     this.scoreText;
+    this.foodString = 'food1';
 
   }
 
@@ -93,6 +94,10 @@ export default class GameScene extends Phaser.Scene {
       this.add.sprite(-1000, -1000, 'person7').setScale(0.15).setVisible(false),
       this.add.sprite(-1000, -1000, 'person8').setScale(0.15).setVisible(false),
     ];
+    this.Qkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+    this.Wkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.Ekey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+    this.Rkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
 
     for (var i = 0; i < this.player.health; i++) {
       this.hearts.push(new Heart(this, (i + 1) * 60, 50));
@@ -113,6 +118,7 @@ export default class GameScene extends Phaser.Scene {
     this.laserGroup = this.physics.add.group();
     this.addEvents();
 
+
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
@@ -121,7 +127,7 @@ export default class GameScene extends Phaser.Scene {
         this.globalState.incrementScore();
         this.setScoreText();
         customer.destroy();
-      } else {
+      } else if (this.player.health > 0) {
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
       }
@@ -144,10 +150,26 @@ export default class GameScene extends Phaser.Scene {
   addEvents() {
     this.input.on('pointerdown', pointer => {
       this.shootLaser();
+      console.log('hello')
     })
   }
+  addPickEvent() {
+    if (this.Qkey.isDown) {
+      this.foodString = 'food1';
+      console.log('ahhhhhh');
+    }
+    if (this.Wkey.isDown) {
+      this.foodString = 'food2';
+      console.log('ahhhhhh');
+    }
+    if (this.Ekey.isDown) {
+      this.foodString = 'food3';
+      console.log('ahhhhhh');
+    }
+  }
+
   shootLaser() {
-    const projectile = new Projectile(this, this.player.x, this.player.y, 'food1');
+    const projectile = new Projectile(this, this.player.x, this.player.y, this.foodString);
     this.laserGroup.add(projectile);
     projectile.fire(this.line.getAngle());
   }
@@ -161,6 +183,7 @@ export default class GameScene extends Phaser.Scene {
     this.customers.map((customer) => {
       customer.update();
     });
+    this.addPickEvent();
   }
 
   getRandomPosition() {
