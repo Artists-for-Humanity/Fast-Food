@@ -114,13 +114,30 @@ export default class GameScene extends Phaser.Scene {
     this.addEvents();
 
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
-      console.log(customer.foodSprite, customer.customerSprite);
+      console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
-      if (customer.foodSprite === 'food1') {
-        customer.destroy()
+      // Need to add conditionals for other food types, food2, food3
+      if (customer.foodSprite === laser.foodSprite) {
         this.globalState.incrementScore();
         this.setScoreText();
+        customer.destroy();
+      } else {
+        this.hearts[this.player.health - 1].destroy();
+        this.player.health--;
       }
+      // if (customer.foodSprite === 'food2' && this.player.health > 0) {
+      //   this.globalState.incrementScore();
+      //   this.setScoreText();
+      // }
+      // if (customer.foodSprite === 'food3' && this.player.health > 0) {
+      //   this.globalState.incrementScore();
+      //   this.setScoreText();
+      // } 
+      // if (this.player.health > 0) {
+
+      //   this.hearts[this.player.health - 1].destroy();
+      //   this.player.health--;
+      // }
     });
   }
 
@@ -130,7 +147,7 @@ export default class GameScene extends Phaser.Scene {
     })
   }
   shootLaser() {
-    const projectile = new Projectile(this, this.player.x, this.player.y);
+    const projectile = new Projectile(this, this.player.x, this.player.y, 'food1');
     this.laserGroup.add(projectile);
     projectile.fire(this.line.getAngle());
   }
@@ -237,6 +254,7 @@ export default class GameScene extends Phaser.Scene {
         this.physics.world.removeCollider(collider);
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
+
 
       });
     });

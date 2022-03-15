@@ -1,10 +1,9 @@
 export default class Projectile extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y) {
-        super(scene, x, y, 'food1');
+    constructor(scene, x, y, foodSprite) {
+        super(scene, x, y, foodSprite);
         scene.add.existing(this);
         scene.physics.add.existing(this);
-        // this.setActive(true);
-        // this.setVisible(true);
+        this.foodSprite = foodSprite;
         this.setScale(0.1);
     }
     fire(angle) {
