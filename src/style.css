@@ -265,24 +265,37 @@ h1 {
     font-size: 25px
 }
 
-#thumbUP {
-    width: 40px;
-    background: none;
-    /* height: 30px;
-    background: url(./assets/thumb-up.png); */
-    /* background-size: 50%;
-    background-repeat: no-repeat; */
-    border: none;
-    cursor: pointer;
-    fill: red;
-}
-
 #thumbDOWN {
     width: 40px;
+    background: none;
     height: 30px;
-    background: url(./assets/thumb-up.png);
+    /* background: url(./assets/thumbs-up-solid.svg);  */
+    background-size: 50%;
+    background-repeat: no-repeat; 
+    border: none;
+    cursor: pointer;
+    fill: rgb(255, 255, 255);
+}
+
+#thumbDOWN:hover {
+    fill: red; 
+}
+
+#thumbUP {
+    width: 40px;
+    background: none; 
+    height: 30px;
+    /* background: url(./assets/thumbs-down-solid.svg);  */
     background-size: 50%;
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
+    fill: rgb(255, 255, 255);
+    transform: rotate(180deg);
 }
+
+#thumbUP:hover {
+    fill: green; 
+}
+
+
