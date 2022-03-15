@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
+import GameOverScene from './Scenes/GameOverScene';
+
 /* 
 Pseudocode
 Opening Screen
