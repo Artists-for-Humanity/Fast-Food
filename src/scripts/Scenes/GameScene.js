@@ -143,6 +143,10 @@ export default class GameScene extends Phaser.Scene {
     this.customers.map((customer) => {
       customer.update();
     });
+
+    if (this.isAlive()){
+      this.scene.start('GameOverScene');
+    }
   }
 
   getRandomPosition() {
@@ -234,11 +238,16 @@ export default class GameScene extends Phaser.Scene {
           return;
         }
         this.physics.world.removeCollider(collider);
+        console.log(this.player.health);
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
 
-
-      });
+        customer.body.stop();
+      }); 
     });
   }
+  isAlive() {
+    return this.player.health===0;
+  }
 }
+
