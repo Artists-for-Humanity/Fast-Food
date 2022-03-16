@@ -30,6 +30,7 @@ export default class GameScene extends Phaser.Scene {
     this.hearts = [];
     this.scoreText;
     this.foodString = 'food1';
+    this.numCusCount = 10;
 
   }
 
@@ -113,7 +114,6 @@ export default class GameScene extends Phaser.Scene {
 
     this.globalState.resetScore();
     this.setScoreText();
-
     this.createCustomers();
     this.laserGroup = this.physics.add.group();
     this.addEvents();
@@ -127,6 +127,8 @@ export default class GameScene extends Phaser.Scene {
         this.globalState.incrementScore();
         this.setScoreText();
         customer.destroy();
+        this.numCusCount--;
+        console.log(this.customers);
       } else if (this.player.health > 0) {
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
@@ -184,7 +186,13 @@ export default class GameScene extends Phaser.Scene {
       customer.update();
     });
     this.addPickEvent();
+    if (this.numCusCount === 0) {
+      this.createCustomers();
+      this.numCusCount = 10;
+    }
+    console.log(this.globalState.score);
   }
+
 
   getRandomPosition() {
     const position = {
@@ -283,3 +291,5 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 }
+
+// Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.
