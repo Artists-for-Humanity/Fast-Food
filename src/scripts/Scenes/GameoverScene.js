@@ -4,7 +4,9 @@ import { colors } from '../constants';
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'GameOverScene' });
+    super({
+      key: 'GameOverScene',
+    });
   }
 
   preload() {
@@ -12,8 +14,7 @@ export default class GameOverScene extends Phaser.Scene {
   }
 
   create() {
-
-    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'end-scene')
+    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'end-scene');
 
     WebFont.load({
       custom: {
@@ -21,18 +22,13 @@ export default class GameOverScene extends Phaser.Scene {
       },
       active: () => {
         this.add
-          .text(
-            this.game.config.width / 2,
-            this.game.config.height - 600,
-            'YOU\'RE FIRED',
-            {
-              fontFamily: 'Play Bold',
-              fontSize: '65px',
-              fill: colors.black,
-              align: 'center',
-              shadowColor: 'red',
-            }
-          )
+          .text(this.game.config.width / 2, this.game.config.height - 600, "YOU'RE FIRED", {
+            fontFamily: 'Play Bold',
+            fontSize: '65px',
+            fill: colors.black,
+            align: 'center',
+            shadowColor: 'red',
+          })
           .setOrigin(0.5);
       },
     });
@@ -43,19 +39,14 @@ export default class GameOverScene extends Phaser.Scene {
       },
       active: () => {
         this.add
-          .text(
-            this.game.config.width / 2,
-            (this.game.config.height / 2) + 200 ,
-            'PLAY AGAIN',
-            {
-              fontFamily: 'Play Bold',
-              fontSize: '70px',
-              fill: colors.black,
-              align: 'center',
-              shadowColor: 'red',
-              backgroundColor: 'red',
-            }
-          )
+          .text(this.game.config.width / 2, this.game.config.height / 2 + 200, 'PLAY AGAIN', {
+            fontFamily: 'Play Bold',
+            fontSize: '70px',
+            fill: colors.black,
+            align: 'center',
+            shadowColor: 'red',
+            backgroundColor: 'red',
+          })
           .setOrigin(0.5);
       },
     });
@@ -66,11 +57,7 @@ export default class GameOverScene extends Phaser.Scene {
       },
       active: () => {
         this.add
-          .text(
-            this.game.config.width / 2, 
-            (this.game.config.height / 2) + 300, 
-            'MENU', 
-            {
+          .text(this.game.config.width / 2, this.game.config.height / 2 + 300, 'MENU', {
             fontFamily: 'Play Bold',
             fontSize: '50px',
             fontStyle: 'bold',
@@ -88,19 +75,14 @@ export default class GameOverScene extends Phaser.Scene {
       },
       active: () => {
         this.add
-          .text(
-            this.game.config.width -850,
-            this.game.config.height - 100,
-            'QUIT',
-            {
-              fontFamily: 'Play Bold',
-              fontSize: '40px',
-              fill: colors.black,
-              align: 'center',
-              shadowColor: 'red',
-              backgroundColor: 'white',
-            }
-          )
+          .text(this.game.config.width - 850, this.game.config.height - 100, 'QUIT', {
+            fontFamily: 'Play Bold',
+            fontSize: '40px',
+            fill: colors.black,
+            align: 'center',
+            shadowColor: 'red',
+            backgroundColor: 'white',
+          })
           .setOrigin(0.5);
       },
     });
