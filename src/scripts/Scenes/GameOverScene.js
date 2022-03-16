@@ -107,6 +107,7 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('MenuScene');
+
     });
   }
 }
