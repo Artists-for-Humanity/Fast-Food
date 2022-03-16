@@ -190,7 +190,9 @@ export default class GameScene extends Phaser.Scene {
       this.createCustomers();
       this.numCusCount = 10;
     }
-    console.log(this.globalState.score);
+    if (this.player.hearts === 0) {
+      this.globalState.score = 0;
+    }
   }
 
 
