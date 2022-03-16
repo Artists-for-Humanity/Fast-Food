@@ -7,9 +7,7 @@ import LaserGroup from '../Sprites/Projectile';
 import Heart from '../Sprites/Heart';
 import WebFont from 'webfontloader';
 import GlobalState from './GlobalState';
-import {
-  colors
-} from '../constants';
+import { colors } from '../constants';
 
 export default class GameScene extends Phaser.Scene {
   player;
@@ -32,10 +30,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('player', new URL('../../assets/player.png',
-      import.meta.url).href);
-    this.load.image('counter', new URL('../../assets/counter.png',
-      import.meta.url).href);
+    this.load.image('player', new URL('../../assets/player.png', import.meta.url).href);
+    this.load.image('counter', new URL('../../assets/counter.png', import.meta.url).href);
     this.load.image('line', new URL('../../assets/line.png',
       import.meta.url).href);
     this.load.image('heart', new URL('../../assets/heart.png',
@@ -156,6 +152,9 @@ export default class GameScene extends Phaser.Scene {
     this.customers.map((customer) => {
       customer.update();
     });
+    if (this.isAlive()){
+      this.scene.start('GameOverScene');
+    }
   }
 
   getRandomPosition() {
@@ -247,11 +246,15 @@ export default class GameScene extends Phaser.Scene {
           return;
         }
         this.physics.world.removeCollider(collider);
+        console.log(this.player.health);
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
 
-
+        customer.body.stop();
       });
     });
+    isAlive() {
+      return this.player.health===0;
+    }
   }
 }

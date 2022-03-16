@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
 import GlobalState from './Scenes/GlobalState';
+import GameOverScene from './Scenes/GameOverScene';
+
 /* 
 Pseudocode
 Opening Screen
@@ -42,7 +44,7 @@ const config = {
       debug: true,
     },
   },
-  scene: [MenuScene, GameScene],
+  scene: [MenuScene, GameScene, GameOverScene],
   plugins: {
     global: [{
       key: 'GlobalState',
