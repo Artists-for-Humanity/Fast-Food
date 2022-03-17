@@ -3,11 +3,13 @@ import Customer from '../Sprites/Customer';
 import Line from '../Sprites/Line';
 import Player from '../Sprites/Player';
 import Counter from '../Sprites/Counter';
-import Projectile from '../Sprites/Projectile'
+import LaserGroup from '../Sprites/Projectile';
 import Heart from '../Sprites/Heart';
 import WebFont from 'webfontloader';
 import GlobalState from './GlobalState';
-import { colors } from '../constants';
+import {
+  colors
+} from '../constants';
 
 export default class GameScene extends Phaser.Scene {
   player;
@@ -33,23 +35,40 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('player', new URL('../../assets/player.png', import.meta.url).href);
-    this.load.image('counter', new URL('../../assets/counter.png', import.meta.url).href);
-    this.load.image('line', new URL('../../assets/line.png', import.meta.url).href);
-    this.load.image('heart', new URL('../../assets/heart.png', import.meta.url).href);
-    this.load.image('person1', new URL('../../assets/person1.png', import.meta.url).href);
-    this.load.image('person2', new URL('../../assets/person2.png', import.meta.url).href);
-    this.load.image('person3', new URL('../../assets/person3.png', import.meta.url).href);
-    this.load.image('person4', new URL('../../assets/person4.png', import.meta.url).href);
-    this.load.image('person5', new URL('../../assets/person5.png', import.meta.url).href);
-    this.load.image('person6', new URL('../../assets/person6.png', import.meta.url).href);
-    this.load.image('person7', new URL('../../assets/person7.png', import.meta.url).href);
-    this.load.image('person8', new URL('../../assets/person8.png', import.meta.url).href);
-    this.load.image('bubble', new URL('../../assets/thought-bubble.png', import.meta.url).href);
-    this.load.image('food1', new URL('../../assets/food1.png', import.meta.url).href);
-    this.load.image('projectile', new URL('../../assets/food1.png', import.meta.url).href);
-    this.load.image('food2', new URL('../../assets/food2.png', import.meta.url).href);
-    this.load.image('food3', new URL('../../assets/food3.png', import.meta.url).href);
+    this.load.image('player', new URL('../../assets/player.png',
+      import.meta.url).href);
+    this.load.image('counter', new URL('../../assets/counter.png',
+      import.meta.url).href);
+    this.load.image('line', new URL('../../assets/line.png',
+      import.meta.url).href);
+    this.load.image('heart', new URL('../../assets/heart.png',
+      import.meta.url).href);
+    this.load.image('person1', new URL('../../assets/person1.png',
+      import.meta.url).href);
+    this.load.image('person2', new URL('../../assets/person2.png',
+      import.meta.url).href);
+    this.load.image('person3', new URL('../../assets/person3.png',
+      import.meta.url).href);
+    this.load.image('person4', new URL('../../assets/person4.png',
+      import.meta.url).href);
+    this.load.image('person5', new URL('../../assets/person5.png',
+      import.meta.url).href);
+    this.load.image('person6', new URL('../../assets/person6.png',
+      import.meta.url).href);
+    this.load.image('person7', new URL('../../assets/person7.png',
+      import.meta.url).href);
+    this.load.image('person8', new URL('../../assets/person8.png',
+      import.meta.url).href);
+    this.load.image('bubble', new URL('../../assets/thought-bubble.png',
+      import.meta.url).href);
+    this.load.image('food1', new URL('../../assets/food1.png',
+      import.meta.url).href);
+    this.load.image('projectile', new URL('../../assets/food1.png',
+      import.meta.url).href);
+    this.load.image('food2', new URL('../../assets/food2.png',
+      import.meta.url).href);
+    this.load.image('food3', new URL('../../assets/food3.png',
+      import.meta.url).href);
   }
 
   create() {
@@ -129,8 +148,7 @@ export default class GameScene extends Phaser.Scene {
   addEvents() {
     this.input.on('pointerdown', (pointerdown) => {
       this.shootLaser();
-      console.log('hello')
-    })
+    });
   }
   addPickEvent() {
     if (this.Qkey.isDown) {
@@ -180,12 +198,11 @@ export default class GameScene extends Phaser.Scene {
       for (var i = 0; i < this.player.health; i++) {
         this.hearts.push(new Heart(this, (i + 1) * 60, 50));
       }
-    if (this.isAlive()) {
-      this.scene.start('GameOverScene');
-
+      if (this.isAlive()) {
+        this.scene.start('GameOverScene');
+      }
     }
   }
-
 
   getRandomPosition() {
     const position = {
@@ -201,7 +218,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createSpawnZone() {
-    const { height, width } = this.game.config;
+    const {
+      height,
+      width
+    } = this.game.config;
     const counterBody = this.counter.body;
 
     // extended this further than Counter
@@ -218,7 +238,7 @@ export default class GameScene extends Phaser.Scene {
       [width, height],
       [0, height],
       [0, 0],
-      [5, 5], 
+      [5, 5],
       [960, 5],
       [960, 715],
       [5, 715],
@@ -286,12 +306,9 @@ export default class GameScene extends Phaser.Scene {
       });
     });
   }
-}
-
-// Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.
-
   isAlive() {
     return this.player.health === 0;
   }
 }
 
+// TODO: Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.
