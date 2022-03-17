@@ -160,12 +160,12 @@ export default class GameScene extends Phaser.Scene {
     const counterBody = this.counter.body;
 
     // extended this further than Counter
-    const counterPositions = [
-      [width / 2 - counterBody.width / 2 - 100, height / 2 - counterBody.height / 2 - 100],
-      [width / 2 - counterBody.width / 2 - 100, height / 2 + counterBody.height / 2 + 100],
-      [width / 2 + counterBody.width / 2 + 100, height / 2 + counterBody.height / 2],
-      [width / 2 + counterBody.width / 2 + 100, height / 2 - counterBody.height / 2 - 100],
-    ];
+    // const counterPositions = [
+    //   [width / 2 - counterBody.width / 2 - 100, height / 2 - counterBody.height / 2 - 100],
+    //   [width / 2 - counterBody.width / 2 - 100, height / 2 + counterBody.height / 2 + 100],
+    //   [width / 2 + counterBody.width / 2 + 100, height / 2 + counterBody.height / 2],
+    //   [width / 2 + counterBody.width / 2 + 100, height / 2 - counterBody.height / 2 - 100],
+    // ];
 
     var polygon = new Phaser.Geom.Polygon([
       [0, 0],
