@@ -7,7 +7,9 @@ import LaserGroup from '../Sprites/Projectile';
 import Heart from '../Sprites/Heart';
 import WebFont from 'webfontloader';
 import GlobalState from './GlobalState';
-import { colors } from '../constants';
+import {
+  colors
+} from '../constants';
 
 export default class GameScene extends Phaser.Scene {
   player;
@@ -27,26 +29,46 @@ export default class GameScene extends Phaser.Scene {
     this.laserGroup;
     this.hearts = [];
     this.scoreText;
+    this.foodString = 'food1';
+    this.numCusCount = 10;
+
   }
 
   preload() {
-    this.load.image('player', new URL('../../assets/player.png', import.meta.url).href);
-    this.load.image('counter', new URL('../../assets/counter.png', import.meta.url).href);
-    this.load.image('line', new URL('../../assets/line.png', import.meta.url).href);
-    this.load.image('heart', new URL('../../assets/heart.png', import.meta.url).href);
-    this.load.image('person1', new URL('../../assets/person1.png', import.meta.url).href);
-    this.load.image('person2', new URL('../../assets/person2.png', import.meta.url).href);
-    this.load.image('person3', new URL('../../assets/person3.png', import.meta.url).href);
-    this.load.image('person4', new URL('../../assets/person4.png', import.meta.url).href);
-    this.load.image('person5', new URL('../../assets/person5.png', import.meta.url).href);
-    this.load.image('person6', new URL('../../assets/person6.png', import.meta.url).href);
-    this.load.image('person7', new URL('../../assets/person7.png', import.meta.url).href);
-    this.load.image('person8', new URL('../../assets/person8.png', import.meta.url).href);
-    this.load.image('bubble', new URL('../../assets/thought-bubble.png', import.meta.url).href);
-    this.load.image('food1', new URL('../../assets/food1.png', import.meta.url).href);
-    this.load.image('projectile', new URL('../../assets/food1.png', import.meta.url).href);
-    this.load.image('food2', new URL('../../assets/food2.png', import.meta.url).href);
-    this.load.image('food3', new URL('../../assets/food3.png', import.meta.url).href);
+    this.load.image('player', new URL('../../assets/player.png',
+      import.meta.url).href);
+    this.load.image('counter', new URL('../../assets/counter.png',
+      import.meta.url).href);
+    this.load.image('line', new URL('../../assets/line.png',
+      import.meta.url).href);
+    this.load.image('heart', new URL('../../assets/heart.png',
+      import.meta.url).href);
+    this.load.image('person1', new URL('../../assets/person1.png',
+      import.meta.url).href);
+    this.load.image('person2', new URL('../../assets/person2.png',
+      import.meta.url).href);
+    this.load.image('person3', new URL('../../assets/person3.png',
+      import.meta.url).href);
+    this.load.image('person4', new URL('../../assets/person4.png',
+      import.meta.url).href);
+    this.load.image('person5', new URL('../../assets/person5.png',
+      import.meta.url).href);
+    this.load.image('person6', new URL('../../assets/person6.png',
+      import.meta.url).href);
+    this.load.image('person7', new URL('../../assets/person7.png',
+      import.meta.url).href);
+    this.load.image('person8', new URL('../../assets/person8.png',
+      import.meta.url).href);
+    this.load.image('bubble', new URL('../../assets/thought-bubble.png',
+      import.meta.url).href);
+    this.load.image('food1', new URL('../../assets/food1.png',
+      import.meta.url).href);
+    this.load.image('projectile', new URL('../../assets/food1.png',
+      import.meta.url).href);
+    this.load.image('food2', new URL('../../assets/food2.png',
+      import.meta.url).href);
+    this.load.image('food3', new URL('../../assets/food3.png',
+      import.meta.url).href);
   }
 
   create() {
@@ -71,6 +93,10 @@ export default class GameScene extends Phaser.Scene {
       this.add.sprite(-1000, -1000, 'person7').setScale(0.15).setVisible(false),
       this.add.sprite(-1000, -1000, 'person8').setScale(0.15).setVisible(false),
     ];
+    this.Qkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+    this.Wkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.Ekey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+    this.Rkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
 
     for (var i = 0; i < this.player.health; i++) {
       this.hearts.push(new Heart(this, (i + 1) * 60, 50));
@@ -86,11 +112,12 @@ export default class GameScene extends Phaser.Scene {
 
     this.globalState.resetScore();
     this.setScoreText();
-
     this.createCustomers();
     this.laserGroup = this.physics.add.group();
     this.addEvents();
 
+
+    this.physics.add.collider(this.customers, this.customers);
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
@@ -99,7 +126,9 @@ export default class GameScene extends Phaser.Scene {
         this.globalState.incrementScore();
         this.setScoreText();
         customer.destroy();
-      } else {
+        this.numCusCount--;
+        console.log(this.customers);
+      } else if (this.player.health > 0) {
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
       }
@@ -110,7 +139,6 @@ export default class GameScene extends Phaser.Scene {
       // if (customer.foodSprite === 'food3' && this.player.health > 0) {
       //   this.globalState.incrementScore();
       //   this.setScoreText();
-      // if (this.player.health > 0) {
       //   this.hearts[this.player.health - 1].destroy();
       //   this.player.health--;
       // }
@@ -122,8 +150,23 @@ export default class GameScene extends Phaser.Scene {
       this.shootLaser();
     });
   }
+  addPickEvent() {
+    if (this.Qkey.isDown) {
+      this.foodString = 'food1';
+      console.log('ahhhhhh');
+    }
+    if (this.Wkey.isDown) {
+      this.foodString = 'food2';
+      console.log('ahhhhhh');
+    }
+    if (this.Ekey.isDown) {
+      this.foodString = 'food3';
+      console.log('ahhhhhh');
+    }
+  }
+
   shootLaser() {
-    const projectile = new Projectile(this, this.player.x, this.player.y, 'food1');
+    const projectile = new Projectile(this, this.player.x, this.player.y, this.foodString);
     this.laserGroup.add(projectile);
     projectile.fire(this.line.getAngle());
   }
@@ -137,8 +180,27 @@ export default class GameScene extends Phaser.Scene {
     this.customers.map((customer) => {
       customer.update();
     });
-    if (this.isAlive()) {
-      this.scene.start('GameOverScene');
+    this.addPickEvent();
+    if (this.numCusCount === 0) {
+      this.createCustomers();
+      this.numCusCount = 10;
+    }
+    if (this.player.health === 0) {
+      this.globalState.resetScore();
+      this.setScoreText();
+      this.player.health = 5;
+      this.hearts = [];
+      for (var i = 0; i < this.customers.length; i++) {
+        this.customers[i].destroy();
+        this.numCusCount = 0;
+      }
+      console.log(this.hearts);
+      for (var i = 0; i < this.player.health; i++) {
+        this.hearts.push(new Heart(this, (i + 1) * 60, 50));
+      }
+      if (this.isAlive()) {
+        this.scene.start('GameOverScene');
+      }
     }
   }
 
@@ -156,7 +218,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createSpawnZone() {
-    const { height, width } = this.game.config;
+    const {
+      height,
+      width
+    } = this.game.config;
     const counterBody = this.counter.body;
 
     // extended this further than Counter
@@ -173,7 +238,7 @@ export default class GameScene extends Phaser.Scene {
       [width, height],
       [0, height],
       [0, 0],
-      [5, 5], 
+      [5, 5],
       [960, 5],
       [960, 715],
       [5, 715],
@@ -221,21 +286,14 @@ export default class GameScene extends Phaser.Scene {
 
     customerPositions.map((position, i) => {
       const texture = this.customerTextures[i];
-      const customer = new Customer(
-        this,
-        position.x,
-        position.y,
-        texture.texture,
-        texture.food,
-        texture.customer
-      ); /// accessing the key (using the index)
+      const customer = new Customer(this, position.x, position.y, texture.texture, texture.food, texture.customer); /// accessing the key (using the index)
+
       this.customers.push(customer);
 
       const collider = this.physics.add.overlap(this.counter, customer, (counter, customer) => {
         customer.body.stop();
 
         if (this.player.health === 0) {
-          console.log('GAME OVER');
           return;
         }
         this.physics.world.removeCollider(collider);
@@ -243,7 +301,8 @@ export default class GameScene extends Phaser.Scene {
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
 
-        customer.body.stop();
+
+
       });
     });
   }
@@ -251,3 +310,5 @@ export default class GameScene extends Phaser.Scene {
     return this.player.health === 0;
   }
 }
+
+// TODO: Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.

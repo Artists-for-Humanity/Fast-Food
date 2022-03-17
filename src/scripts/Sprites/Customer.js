@@ -13,7 +13,8 @@ export default class Customer extends Phaser.Physics.Arcade.Sprite {
 
     this.foodSprite = foodSprite;
     this.customerSprite = customerSprite;
-
+    this.setSize(50, 50);
+    this.setOffset(25, 75);
     return this;
   }
 
