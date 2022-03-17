@@ -104,6 +104,7 @@ export default class GameScene extends Phaser.Scene {
       this.hearts.push(new Heart(this, (i + 1) * 60, 50));
     }
 
+
     this.scoreText = this.add.text(this.game.config.width - 200, 30, '', {
       fontFamily: 'Space Mono',
       fontSize: '24px',
@@ -117,6 +118,8 @@ export default class GameScene extends Phaser.Scene {
     this.createCustomers();
     this.laserGroup = this.physics.add.group();
     this.addEvents();
+
+    this.physics.add.collider(this.customers, this.customers);
 
 
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
@@ -132,6 +135,7 @@ export default class GameScene extends Phaser.Scene {
       } else if (this.player.health > 0) {
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
+
       }
       // if (customer.foodSprite === 'food2' && this.player.health > 0) {
       //   this.globalState.incrementScore();
@@ -190,8 +194,19 @@ export default class GameScene extends Phaser.Scene {
       this.createCustomers();
       this.numCusCount = 10;
     }
-    if (this.player.hearts === 0) {
-      this.globalState.score = 0;
+    if (this.player.health === 0) {
+      this.globalState.resetScore();
+      this.setScoreText();
+      this.player.health = 5;
+      this.hearts = [];
+      for (var i = 0; i < this.customers.length; i++) {
+        this.customers[i].destroy();
+        this.numCusCount = 0;
+      }
+      console.log(this.hearts);
+      for (var i = 0; i < this.player.health; i++) {
+        this.hearts.push(new Heart(this, (i + 1) * 60, 50));
+      }
     }
   }
 
@@ -287,6 +302,7 @@ export default class GameScene extends Phaser.Scene {
         this.physics.world.removeCollider(collider);
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
+
 
 
       });
