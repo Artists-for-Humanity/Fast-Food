@@ -287,11 +287,11 @@ h1 {
 
 #thumbUP {
     width: 40px;
-    background: none; 
+    background: none;
     height: 30px;
-    /* background: url(./assets/thumbs-down-solid.svg);  */
+    /* background: url(./assets/thumbs-up-solid.svg);  */
     background-size: 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
     border: none;
     cursor: pointer;
     fill: rgb(255, 255, 255);
@@ -316,3 +316,6 @@ h1 {
     margin-left:50px;
     margin-right:50px;
 }
+
+
+/* need to make new brand */
