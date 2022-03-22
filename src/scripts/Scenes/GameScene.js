@@ -3,7 +3,8 @@ import Customer from '../Sprites/Customer';
 import Line from '../Sprites/Line';
 import Player from '../Sprites/Player';
 import Counter from '../Sprites/Counter';
-import LaserGroup from '../Sprites/Projectile';
+import Projectile from '../Sprites/Projectile'
+
 import Heart from '../Sprites/Heart';
 import WebFont from 'webfontloader';
 import GlobalState from './GlobalState';
@@ -69,6 +70,10 @@ export default class GameScene extends Phaser.Scene {
       import.meta.url).href);
     this.load.image('food3', new URL('../../assets/food3.png',
       import.meta.url).href);
+    this.load.image('food4', new URL('../../assets/food4.png',
+      import.meta.url).href);
+
+
   }
 
   create() {
@@ -82,6 +87,7 @@ export default class GameScene extends Phaser.Scene {
       this.add.sprite(-1000, -1000, 'food1').setScale(0.1).setVisible(false),
       this.add.sprite(-1000, -1000, 'food2').setScale(0.1).setVisible(false),
       this.add.sprite(-1000, -1000, 'food3').setScale(0.1).setVisible(false),
+      this.add.sprite(-1000, -1000, 'food4').setScale(0.1).setVisible(false),
     ];
     this.customerSprites = [
       this.add.sprite(-1000, -1000, 'person1').setScale(0.15).setVisible(false),
@@ -117,11 +123,18 @@ export default class GameScene extends Phaser.Scene {
     this.addEvents();
 
 
-    this.physics.add.collider(this.customers, this.customers);
+
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
-      // Need to add conditionals for other food types, food2, food3
+      
+      // Need to add conditionals for other food types, food2, food3, food 4
+//     this.physics.add.collider(this.customers, this.customers);
+//     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
+//       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
+//       laser.destroy();
+//       // Need to add conditionals for other food types, food2, food3
+
       if (customer.foodSprite === laser.foodSprite) {
         this.globalState.incrementScore();
         this.setScoreText();
@@ -139,16 +152,21 @@ export default class GameScene extends Phaser.Scene {
       // if (customer.foodSprite === 'food3' && this.player.health > 0) {
       //   this.globalState.incrementScore();
       //   this.setScoreText();
-      //   this.hearts[this.player.health - 1].destroy();
-      //   this.player.health--;
-      // }
+      // } 
+      
+      
+      if (this.player.health > 0) {
+        this.hearts[this.player.health - 1].destroy();
+        this.player.health--;
+      }
     });
   }
 
   addEvents() {
     this.input.on('pointerdown', (pointerdown) => {
       this.shootLaser();
-    });
+      console.log('hello')
+    })
   }
   addPickEvent() {
     if (this.Qkey.isDown) {
@@ -161,6 +179,10 @@ export default class GameScene extends Phaser.Scene {
     }
     if (this.Ekey.isDown) {
       this.foodString = 'food3';
+      console.log('ahhhhhh');
+    }
+    if (this.Rkey.isDown) {
+      this.foodString = 'food4';
       console.log('ahhhhhh');
     }
   }
@@ -185,6 +207,10 @@ export default class GameScene extends Phaser.Scene {
       this.createCustomers();
       this.numCusCount = 10;
     }
+
+//     if (this.player.hearts === 0) {
+//       this.globalState.score = 0;
+
     if (this.player.health === 0) {
       this.globalState.resetScore();
       this.setScoreText();
@@ -203,6 +229,7 @@ export default class GameScene extends Phaser.Scene {
       }
     }
   }
+
 
   getRandomPosition() {
     const position = {
@@ -265,7 +292,7 @@ export default class GameScene extends Phaser.Scene {
       this.customerTextures.push({
         texture: rt.saveTexture('doodle' + i),
         customer: customerSprite.texture.key,
-        food: foodSprite.texture.key,
+        food: foodSprite.texture.key
       });
 
       rt.setVisible(false);
@@ -294,13 +321,13 @@ export default class GameScene extends Phaser.Scene {
         customer.body.stop();
 
         if (this.player.health === 0) {
+        console.log(GAMEOVER)
           return;
         }
         this.physics.world.removeCollider(collider);
         console.log(this.player.health);
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
-
 
 
       });
@@ -312,3 +339,4 @@ export default class GameScene extends Phaser.Scene {
 }
 
 // TODO: Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.
+
