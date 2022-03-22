@@ -70,6 +70,8 @@ export default class GameScene extends Phaser.Scene {
       import.meta.url).href);
     this.load.image('food3', new URL('../../assets/food3.png',
       import.meta.url).href);
+    this.load.image('food4', new URL('../../assets/food4.png',
+      import.meta.url).href);
 
   }
 
@@ -84,6 +86,7 @@ export default class GameScene extends Phaser.Scene {
       this.add.sprite(-1000, -1000, 'food1').setScale(0.1).setVisible(false),
       this.add.sprite(-1000, -1000, 'food2').setScale(0.1).setVisible(false),
       this.add.sprite(-1000, -1000, 'food3').setScale(0.1).setVisible(false),
+      this.add.sprite(-1000, -1000, 'food4').setScale(0.1).setVisible(false),
     ];
     this.customerSprites = [
       this.add.sprite(-1000, -1000, 'person1').setScale(0.15).setVisible(false),
@@ -122,7 +125,7 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
-      // Need to add conditionals for other food types, food2, food3
+      // Need to add conditionals for other food types, food2, food3, food 4
       if (customer.foodSprite === laser.foodSprite) {
         this.globalState.incrementScore();
         this.setScoreText();
@@ -166,6 +169,10 @@ export default class GameScene extends Phaser.Scene {
     }
     if (this.Ekey.isDown) {
       this.foodString = 'food3';
+      console.log('ahhhhhh');
+    }
+    if (this.Rkey.isDown) {
+      this.foodString = 'food4';
       console.log('ahhhhhh');
     }
   }
