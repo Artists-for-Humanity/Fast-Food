@@ -24,7 +24,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     };
     const point2 = {
       x: this.scene.game.config.width / 2,
-      y: this.scene.game.config.height / 2,
+      y: 800,
     };
 
     const angle = Phaser.Math.Angle.BetweenPoints(point1, point2) - Phaser.Math.DegToRad(90);
@@ -46,7 +46,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     };
     const point2 = {
       x: this.scene.game.config.width / 2,
-      y: this.scene.game.config.height / 2,
+      y: 700 ,
     };
     return Phaser.Math.Angle.BetweenPoints(point1, point2) - Phaser.Math.DegToRad(90);;
   }
