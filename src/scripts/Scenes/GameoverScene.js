@@ -10,83 +10,28 @@ export default class GameOverScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('end-scene', new URL('../../assets/fired.png', import.meta.url).href);
+    this.load.image('image', new URL('../../assets/fired.png', import.meta.url).href);
+    this.load.image('title', new URL('../../assets/yourFired.png', import.meta.url).href);
+    this.menu = this.load.image('menu', new URL('../../assets/menuButton.png', import.meta.url).href);
+    this.playAgain = this.load.image('playAgain', new URL('../../assets/playAgainButton.png', import.meta.url).href);
+    this.quit = this.load.image('quit', new URL('../../assets/quitButton.png', import.meta.url).href);
   }
 
   create() {
-    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'end-scene');
+    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'image');;
+    this.add.image(this.game.config.width / 2, this.game.config.height / 5, 'title');
+    this.add.image(this.game.config.width / 2, this.game.config.height / 1.1, 'menu');
+  //  this.menu.setInteractive(); 
+    this.add.image(this.game.config.width / 2, this.game.config.height / 1.3, 'playAgain');
+    // this.playAgain.setInteractive();
+    this.add.image(this.game.config.width - 75, 50, 'quit');
+    // this.quit.setInteractive();
+    // this.input.on('gameobjectdown',this.onObjectClicked);
 
-    WebFont.load({
-      custom: {
-        families: ['Play Bold'],
-      },
-      active: () => {
-        this.add
-          .text(this.game.config.width / 2, this.game.config.height - 600, "YOU'RE FIRED", {
-            fontFamily: 'Play Bold',
-            fontSize: '65px',
-            fill: colors.black,
-            align: 'center',
-            shadowColor: 'red',
-          })
-          .setOrigin(0.5);
-      },
-    });
-
-    WebFont.load({
-      custom: {
-        families: ['Play Bold'],
-      },
-      active: () => {
-        this.add
-          .text(this.game.config.width / 2, this.game.config.height / 2 + 200, 'PLAY AGAIN', {
-            fontFamily: 'Play Bold',
-            fontSize: '70px',
-            fill: colors.black,
-            align: 'center',
-            shadowColor: 'red',
-            backgroundColor: 'red',
-          })
-          .setOrigin(0.5);
-      },
-    });
-
-    WebFont.load({
-      custom: {
-        families: ['Play Bold'],
-      },
-      active: () => {
-        this.add
-          .text(this.game.config.width / 2, this.game.config.height / 2 + 300, 'MENU', {
-            fontFamily: 'Play Bold',
-            fontSize: '50px',
-            fontStyle: 'bold',
-            fill: colors.black,
-            align: 'center',
-            backgroundColor: 'white',
-          })
-          .setOrigin(0.5);
-      },
-    });
-
-    WebFont.load({
-      custom: {
-        families: ['Play'],
-      },
-      active: () => {
-        this.add
-          .text(this.game.config.width - 850, this.game.config.height - 100, 'QUIT', {
-            fontFamily: 'Play Bold',
-            fontSize: '40px',
-            fill: colors.black,
-            align: 'center',
-            shadowColor: 'red',
-            backgroundColor: 'white',
-          })
-          .setOrigin(0.5);
-      },
-    });
-
+    // onObjectClicked(pointer,gameObject)
+    // {
+    //     gameObject.angle+=10;
+    // }
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('MenuScene');
     });
