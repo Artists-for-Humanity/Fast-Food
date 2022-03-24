@@ -25,7 +25,7 @@ export default class GameScene extends Phaser.Scene {
     this.foodSprites = [];
     this.spawnZone;
     this.customerTextures = [];
-    this.numCustomers = 3;
+    this.numCustomers = 20;
     this.laserGroup;
     this.hearts = [];
     this.scoreText;
