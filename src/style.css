@@ -301,8 +301,11 @@ h1 {
     fill: green; 
 }
 
-    
+.share { 
+    border: 1px solid black;
+     
 
+}
 .slideshow {
     width:100%
 }
