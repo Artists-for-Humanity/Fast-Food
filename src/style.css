@@ -302,7 +302,7 @@ h1 {
     fill: green; 
 }
 
-    
+
 
 .slideshow {
     width:100%
@@ -315,5 +315,10 @@ h1 {
     margin-bottom:20px;
     margin-left:50px;
     margin-right:50px;
+}
+
+a{
+    color:rgba(103, 27, 22, 1);
+    font-family: "Play Bold";
 }
 

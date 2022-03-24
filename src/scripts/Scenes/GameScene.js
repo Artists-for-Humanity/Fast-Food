@@ -6,8 +6,6 @@ import Counter from '../Sprites/Counter';
 import Projectile from '../Sprites/Projectile'
 
 import Heart from '../Sprites/Heart';
-import WebFont from 'webfontloader';
-import GlobalState from './GlobalState';
 import {
   colors
 } from '../constants';  
@@ -243,7 +241,7 @@ export default class GameScene extends Phaser.Scene {
         this.customers[i].destroy();
         this.numCusCount = 0;
       }
-      console.log(this.hearts);
+      // console.log(this.hearts);
       for (var i = 0; i < this.player.health; i++) {
         this.hearts.push(new Heart(this, (i + 1) * 60, 50));
       }
@@ -341,14 +339,14 @@ export default class GameScene extends Phaser.Scene {
         customer.body.stop();
 
         if (this.player.health === 0) {
-        console.log(GAMEOVER)
+        // console.log(GAMEOVER)
           return;
         }
         this.physics.world.removeCollider(collider);
-        console.log(this.player.health);
+        // console.log(this.player.health);
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
-        console.log(this.player.health)
+        // console.log(this.player.health)
 
 
       });
