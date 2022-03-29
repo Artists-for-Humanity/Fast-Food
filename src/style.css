@@ -183,16 +183,13 @@ h1 {
 
 .box1{
     border-style:solid;
-    border-width:10px;
+    border-width:5px;
     border-color:rgba(103, 27, 22, 1);
     padding:10px;
 }
 
 .box2 {
     margin-top: 40px;
-    border-style:solid;
-    border-width:10px;
-    border-color:rgba(103, 27, 22, 1);
     padding:10px;
 }
 
