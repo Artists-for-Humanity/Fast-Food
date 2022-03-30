@@ -298,13 +298,13 @@ h1 {
     fill: rgb(255, 255, 255);
     border-color: red;
     color: #fff;
-    
-    transition: all 150ms ease-in-out; */
+    */
 }
 
 #thumbDOWN:hover {
     fill: "red" !important; 
     box-shadow: 0 0 10px 0 red inset, 0 0 10px 4px red;
+    transition: all 150ms ease-in-out;
 }
 
 #thumbUP {
@@ -324,13 +324,14 @@ h1 {
     border-color: green;
     color: #fff;
    
-    transition: all 150ms ease-in-out; */
+     */
 }
 
 
 #thumbUP:hover {
     fill: 'green' !important; 
     box-shadow: 0 0 10px 0 green inset, 0 0 10px 4px green;
+    transition: all 150ms ease-in-out;
 }
 
 
