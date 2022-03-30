@@ -1,11 +1,9 @@
 import Phaser from 'phaser';
-import WebFont from 'webfontloader';
-import { colors } from '../constants';
 
-export default class GameOverScene extends Phaser.Scene {
+export default class LevelpassedScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'GameOverScene',
+      key: 'LevelpassedScene',
     });
   }
 

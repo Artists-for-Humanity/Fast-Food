@@ -8,7 +8,8 @@ import Projectile from '../Sprites/Projectile'
 import Heart from '../Sprites/Heart';
 import {
   colors
-} from '../constants';  
+} from '../constants';
+import LevelpassedScene from './LevelpassedScene';
 export default class GameScene extends Phaser.Scene {
   player;
   container;
@@ -23,7 +24,7 @@ export default class GameScene extends Phaser.Scene {
     this.foodSprites = [];
     this.spawnZone;
     this.customerTextures = [];
-    this.numCustomers = 20;
+    this.numCustomers = 5;
     this.laserGroup;
     this.hearts = [];
     this.scoreText;
@@ -34,7 +35,8 @@ export default class GameScene extends Phaser.Scene {
     this.selectFood2;
     this.selectFood3;
     this.selectFood4;
-
+    this.delay = 0;
+    this.isOverlapping = false;
   }
 
   preload() {
@@ -77,24 +79,24 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    this.selectfood1 = this.add.sprite( this.game.config.width / 2, 660, 'food1').setScale(0.1).setDepth(1).setVisible(true);
-    this.selectfood2 = this.add.sprite( this.game.config.width / 2, 660, 'food2').setScale(0.1).setDepth(1).setVisible(false);
-    this.selectfood3 = this.add.sprite( this.game.config.width / 2, 660, 'food3').setScale(0.1).setDepth(1).setVisible(false);
-    this.selectfood4 = this.add.sprite( this.game.config.width / 2, 660, 'food4').setScale(0.1).setDepth(1).setVisible(false);
+    this.selectfood1 = this.add.sprite(this.game.config.width / 2, 660, 'food1').setScale(0.1).setDepth(1).setVisible(true);
+    this.selectfood2 = this.add.sprite(this.game.config.width / 2, 660, 'food2').setScale(0.1).setDepth(1).setVisible(false);
+    this.selectfood3 = this.add.sprite(this.game.config.width / 2, 660, 'food3').setScale(0.1).setDepth(1).setVisible(false);
+    this.selectfood4 = this.add.sprite(this.game.config.width / 2, 660, 'food4').setScale(0.1).setDepth(1).setVisible(false);
 
-    this.counter = new Counter(this, this.game.config.width / 2, this.game.config.height /1.2);
-    this.player = new Player(this, this.game.config.width / 2, this.game.config.height/1.2 );
-    this.line = new Line(this, this.game.config.width / 2, this.game.config.height/1.2);
-    var r1 = this.add.rectangle(this.game.config.width/2, 0, this.game.config.width, 175, 0x964B00).setDepth(1);
+    this.counter = new Counter(this, this.game.config.width / 2, this.game.config.height / 1.2);
+    this.player = new Player(this, this.game.config.width / 2, this.game.config.height / 1.2);
+    this.line = new Line(this, this.game.config.width / 2, this.game.config.height / 1.2);
+    var r1 = this.add.rectangle(this.game.config.width / 2, 0, this.game.config.width, 175, 0x964B00).setDepth(1);
     this.createSpawnZone();
 
     this.bubble = this.add.sprite(0, 0, 'bubble').setScale(0.15).setVisible(false);
     this.foodSprites = [
-      this.add.sprite( this.game.config.width / 2, 800, 'food1').setScale(0.1).setVisible(false),
-      this.add.sprite( this.game.config.width / 2, 800, 'food2').setScale(0.1).setVisible(false),
-      this.add.sprite( this.game.config.width / 2, 800, 'food3').setScale(0.1).setVisible(false),
-      this.add.sprite( this.game.config.width / 2, 800, 'food4').setScale(0.1).setVisible(false),
-    ]; 
+      this.add.sprite(this.game.config.width / 2, 800, 'food1').setScale(0.1).setVisible(false),
+      this.add.sprite(this.game.config.width / 2, 800, 'food2').setScale(0.1).setVisible(false),
+      this.add.sprite(this.game.config.width / 2, 800, 'food3').setScale(0.1).setVisible(false),
+      this.add.sprite(this.game.config.width / 2, 800, 'food4').setScale(0.1).setVisible(false),
+    ];
     this.customerSprites = [
       this.add.sprite(-1000, -1000, 'person1').setScale(0.15).setVisible(false),
       this.add.sprite(-1000, -1000, 'person2').setScale(0.15).setVisible(false),
@@ -109,7 +111,6 @@ export default class GameScene extends Phaser.Scene {
     this.Wkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.Ekey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     this.Rkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-
 
     for (var i = 0; i < this.player.health; i++) {
       this.hearts.push(new Heart(this, (i + 1) * 60, 50).setDepth(1));
@@ -134,13 +135,13 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
-      
+
       // Need to add conditionals for other food types, food2, food3, food 4
-//     this.physics.add.collider(this.customers, this.customers);
-//     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
-//       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
-//       laser.destroy();
-//       // Need to add conditionals for other food types, food2, food3
+      //     this.physics.add.collider(this.customers, this.customers);
+      //     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
+      //       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
+      //       laser.destroy();
+      //       // Need to add conditionals for other food types, food2, food3
 
       if (customer.foodSprite === laser.foodSprite) {
         this.globalState.incrementScore();
@@ -160,8 +161,8 @@ export default class GameScene extends Phaser.Scene {
       //   this.globalState.incrementScore();
       //   this.setScoreText();
       // } 
-      
-      
+
+
       // if (this.player.health > 0) {
       //   this.hearts[this.player.health - 1].destroy();
       //   this.player.health--;
@@ -175,7 +176,7 @@ export default class GameScene extends Phaser.Scene {
       console.log('hello')
     })
   }
-  
+
   addPickEvent() {
     if (this.Qkey.isDown) {
       this.foodString = 'food1';
@@ -217,7 +218,9 @@ export default class GameScene extends Phaser.Scene {
     this.scoreText.setText(`SCORE: ${this.globalState.score}`);
   }
 
-  update() {
+  update(time, delta) {
+    this.delay += delta;
+    this.timer();
 
     this.line.update();
     this.customers.map((customer) => {
@@ -228,14 +231,13 @@ export default class GameScene extends Phaser.Scene {
       this.createCustomers();
       this.numCusCount = 10;
     }
- // this.globalState.resetScore();
-  // this.player.health = 5;
-
+    // this.globalState.resetScore();
+    // this.player.health = 5;
 
     if (this.player.health === 0) {
       this.scene.start('GameOverScene');
       this.setScoreText();
-    
+
       this.hearts = [];
       for (var i = 0; i < this.customers.length; i++) {
         this.customers[i].destroy();
@@ -246,8 +248,10 @@ export default class GameScene extends Phaser.Scene {
         this.hearts.push(new Heart(this, (i + 1) * 60, 50));
       }
     }
+    //check if customer is destroyed + count value
+    // check if num of customers detsroyed = num on customer spawned
+    //play level passed scene
   }
-
 
   getRandomPosition() {
     const position = {
@@ -278,7 +282,7 @@ export default class GameScene extends Phaser.Scene {
     // ];
 
     var polygon = new Phaser.Geom.Polygon([
-      [0,0],
+      [0, 0],
       [width, 0],
       [width, 300],
       [0, 300],
@@ -339,7 +343,7 @@ export default class GameScene extends Phaser.Scene {
         customer.body.stop();
 
         if (this.player.health === 0) {
-        // console.log(GAMEOVER)
+          // console.log(GAMEOVER)
           return;
         }
         this.physics.world.removeCollider(collider);
@@ -351,9 +355,28 @@ export default class GameScene extends Phaser.Scene {
 
       });
     });
+
+
   }
-  
+
+  timer()
+  {
+    this.physics.add.overlap(this.customers, this.counter, () => {
+      if (this.isOverlapping === false){
+        this.isOverlapping = true;
+        this.delay = 0;
+        console.log('hello');
+      }
+      if (this.isOverlapping === true && this.delay > 1000){
+        this.delay -= 1000;
+        this.isOverlapping = false;
+      }
+    })
+  }
+
+ 
+
+
 }
 
 // TODO: Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.
-
