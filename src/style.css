@@ -54,6 +54,13 @@
     src: url('./assets/fonts/Faster_One/FasterOne-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
 *,
 *:before,
 *:after {
@@ -114,11 +121,7 @@ h1 {
 .rating { 
     font-size: 20px;
     text-align:left;
-}
-
-.rating {
-    font-size: 20px;
-    text-align: left;
+    padding-right: 10px;
 }
 
 .head {
@@ -180,16 +183,13 @@ h1 {
 
 .box1{
     border-style:solid;
-    border-width:10px;
+    border-width:5px;
     border-color:rgba(103, 27, 22, 1);
     padding:10px;
 }
 
 .box2 {
     margin-top: 40px;
-    border-style:solid;
-    border-width:10px;
-    border-color:rgba(103, 27, 22, 1);
     padding:10px;
 }
 
@@ -202,7 +202,6 @@ h1 {
 }
 
 .subtext {
-    text-transform: lowercase;
     font-size: 30px;
 }
 
@@ -279,10 +278,15 @@ h1 {
     border: none;
     cursor: pointer;
     fill: rgb(255, 255, 255);
+    border-color: red;
+    color: #fff;
+    box-shadow: 0 0 40px 40px red inset, 0 0 0 0 red;
+    transition: all 150ms ease-in-out;
 }
 
 #thumbDOWN:hover {
     fill: red; 
+    box-shadow: 0 0 10px 0 red inset, 0 0 10px 4px red;
 }
 
 #thumbUP {
@@ -296,6 +300,10 @@ h1 {
     cursor: pointer;
     fill: rgb(255, 255, 255);
     transform: rotate(180deg);
+    border-color: green;
+    color: #fff;
+    box-shadow: 0 0 40px 40px green inset, 0 0 0 0 green;
+    transition: all 150ms ease-in-out;
 }
 
 .gradients { 
@@ -303,10 +311,21 @@ h1 {
 }
 #thumbUP:hover {
     fill: green; 
+    box-shadow: 0 0 10px 0 green inset, 0 0 10px 4px green;
 }
 
-
-
+.share { 
+    font-size: 15px;
+    font-family: 'Montserrat';
+    fill: white;
+    border: 1px solid rgba(103, 27, 22, 1);
+    float: right;
+    right: 800px;
+    position: absolute;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+}
 .slideshow {
     width:100%
 }
