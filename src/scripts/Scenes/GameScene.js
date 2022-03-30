@@ -129,8 +129,6 @@ export default class GameScene extends Phaser.Scene {
     this.laserGroup = this.physics.add.group();
     this.addEvents();
 
-
-
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
@@ -160,12 +158,11 @@ export default class GameScene extends Phaser.Scene {
       //   this.globalState.incrementScore();
       //   this.setScoreText();
       // } 
-      
+
       
       // if (this.player.health > 0) {
       //   this.hearts[this.player.health - 1].destroy();
       //   this.player.health--;
-      // }
     });
   }
 
@@ -339,7 +336,7 @@ export default class GameScene extends Phaser.Scene {
         customer.body.stop();
 
         if (this.player.health === 0) {
-        // console.log(GAMEOVER)
+
           return;
         }
         this.physics.world.removeCollider(collider);
@@ -352,8 +349,7 @@ export default class GameScene extends Phaser.Scene {
       });
     });
   }
-  
 }
 
-// TODO: Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.
+// Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.
 
