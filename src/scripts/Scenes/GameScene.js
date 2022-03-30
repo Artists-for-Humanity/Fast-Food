@@ -6,12 +6,9 @@ import Counter from '../Sprites/Counter';
 import Projectile from '../Sprites/Projectile'
 
 import Heart from '../Sprites/Heart';
-import WebFont from 'webfontloader';
-import GlobalState from './GlobalState';
 import {
   colors
-} from '../constants';
-
+} from '../constants';  
 export default class GameScene extends Phaser.Scene {
   player;
   container;
@@ -26,12 +23,17 @@ export default class GameScene extends Phaser.Scene {
     this.foodSprites = [];
     this.spawnZone;
     this.customerTextures = [];
-    this.numCustomers = 10;
+    this.numCustomers = 20;
     this.laserGroup;
     this.hearts = [];
     this.scoreText;
     this.foodString = 'food1';
     this.numCusCount = 10;
+    this.selectFood = 'food1';
+    this.selectFood1;
+    this.selectFood2;
+    this.selectFood3;
+    this.selectFood4;
 
   }
 
@@ -72,23 +74,27 @@ export default class GameScene extends Phaser.Scene {
       import.meta.url).href);
     this.load.image('food4', new URL('../../assets/food4.png',
       import.meta.url).href);
-
-
   }
 
   create() {
-    this.counter = new Counter(this, this.game.config.width / 2, this.game.config.height / 2);
-    this.player = new Player(this, this.game.config.width / 2, this.game.config.height / 2);
-    this.line = new Line(this, this.game.config.width / 2, this.game.config.height / 2);
+    this.selectfood1 = this.add.sprite( this.game.config.width / 2, 660, 'food1').setScale(0.1).setDepth(1).setVisible(true);
+    this.selectfood2 = this.add.sprite( this.game.config.width / 2, 660, 'food2').setScale(0.1).setDepth(1).setVisible(false);
+    this.selectfood3 = this.add.sprite( this.game.config.width / 2, 660, 'food3').setScale(0.1).setDepth(1).setVisible(false);
+    this.selectfood4 = this.add.sprite( this.game.config.width / 2, 660, 'food4').setScale(0.1).setDepth(1).setVisible(false);
+
+    this.counter = new Counter(this, this.game.config.width / 2, this.game.config.height /1.2);
+    this.player = new Player(this, this.game.config.width / 2, this.game.config.height/1.2 );
+    this.line = new Line(this, this.game.config.width / 2, this.game.config.height/1.2);
+    var r1 = this.add.rectangle(this.game.config.width/2, 0, this.game.config.width, 175, 0x964B00).setDepth(1);
     this.createSpawnZone();
 
     this.bubble = this.add.sprite(0, 0, 'bubble').setScale(0.15).setVisible(false);
     this.foodSprites = [
-      this.add.sprite(-1000, -1000, 'food1').setScale(0.1).setVisible(false),
-      this.add.sprite(-1000, -1000, 'food2').setScale(0.1).setVisible(false),
-      this.add.sprite(-1000, -1000, 'food3').setScale(0.1).setVisible(false),
-      this.add.sprite(-1000, -1000, 'food4').setScale(0.1).setVisible(false),
-    ];
+      this.add.sprite( this.game.config.width / 2, 800, 'food1').setScale(0.1).setVisible(false),
+      this.add.sprite( this.game.config.width / 2, 800, 'food2').setScale(0.1).setVisible(false),
+      this.add.sprite( this.game.config.width / 2, 800, 'food3').setScale(0.1).setVisible(false),
+      this.add.sprite( this.game.config.width / 2, 800, 'food4').setScale(0.1).setVisible(false),
+    ]; 
     this.customerSprites = [
       this.add.sprite(-1000, -1000, 'person1').setScale(0.15).setVisible(false),
       this.add.sprite(-1000, -1000, 'person2').setScale(0.15).setVisible(false),
@@ -104,8 +110,9 @@ export default class GameScene extends Phaser.Scene {
     this.Ekey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     this.Rkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
 
+
     for (var i = 0; i < this.player.health; i++) {
-      this.hearts.push(new Heart(this, (i + 1) * 60, 50));
+      this.hearts.push(new Heart(this, (i + 1) * 60, 50).setDepth(1));
     }
 
     this.scoreText = this.add.text(this.game.config.width - 200, 30, '', {
@@ -114,7 +121,7 @@ export default class GameScene extends Phaser.Scene {
       fontStyle: 'bold',
       fill: colors.white,
       align: 'center',
-    });
+    }).setDepth(1);
 
     this.globalState.resetScore();
     this.setScoreText();
@@ -142,8 +149,8 @@ export default class GameScene extends Phaser.Scene {
         this.numCusCount--;
         console.log(this.customers);
       } else if (this.player.health > 0) {
-        this.hearts[this.player.health - 1].destroy();
-        this.player.health--;
+        // this.hearts[this.player.health - 1].destroy();
+        // this.player.health--;
       }
       // if (customer.foodSprite === 'food2' && this.player.health > 0) {
       //   this.globalState.incrementScore();
@@ -155,10 +162,10 @@ export default class GameScene extends Phaser.Scene {
       // } 
       
       
-      if (this.player.health > 0) {
-        this.hearts[this.player.health - 1].destroy();
-        this.player.health--;
-      }
+      // if (this.player.health > 0) {
+      //   this.hearts[this.player.health - 1].destroy();
+      //   this.player.health--;
+      // }
     });
   }
 
@@ -168,22 +175,35 @@ export default class GameScene extends Phaser.Scene {
       console.log('hello')
     })
   }
+  
   addPickEvent() {
     if (this.Qkey.isDown) {
       this.foodString = 'food1';
-      console.log('ahhhhhh');
+      this.selectfood1.visible = true;
+      this.selectfood2.visible = false;
+      this.selectfood3.visible = false;
+      this.selectfood4.visible = false;
     }
     if (this.Wkey.isDown) {
       this.foodString = 'food2';
-      console.log('ahhhhhh');
+      this.selectfood1.visible = false;
+      this.selectfood2.visible = true;
+      this.selectfood3.visible = false;
+      this.selectfood4.visible = false;
     }
     if (this.Ekey.isDown) {
       this.foodString = 'food3';
-      console.log('ahhhhhh');
+      this.selectfood1.visible = false;
+      this.selectfood2.visible = false;
+      this.selectfood3.visible = true;
+      this.selectfood4.visible = false;
     }
     if (this.Rkey.isDown) {
       this.foodString = 'food4';
-      console.log('ahhhhhh');
+      this.selectfood1.visible = false;
+      this.selectfood2.visible = false;
+      this.selectfood3.visible = false;
+      this.selectfood4.visible = true;
     }
   }
 
@@ -198,6 +218,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update() {
+
     this.line.update();
     this.customers.map((customer) => {
       customer.update();
@@ -207,25 +228,22 @@ export default class GameScene extends Phaser.Scene {
       this.createCustomers();
       this.numCusCount = 10;
     }
+ // this.globalState.resetScore();
+  // this.player.health = 5;
 
-//     if (this.player.hearts === 0) {
-//       this.globalState.score = 0;
 
     if (this.player.health === 0) {
-      this.globalState.resetScore();
+      this.scene.start('GameOverScene');
       this.setScoreText();
-      this.player.health = 5;
+    
       this.hearts = [];
       for (var i = 0; i < this.customers.length; i++) {
         this.customers[i].destroy();
         this.numCusCount = 0;
       }
-      console.log(this.hearts);
+      // console.log(this.hearts);
       for (var i = 0; i < this.player.health; i++) {
         this.hearts.push(new Heart(this, (i + 1) * 60, 50));
-      }
-      if (this.isAlive()) {
-        this.scene.start('GameOverScene');
       }
     }
   }
@@ -260,21 +278,21 @@ export default class GameScene extends Phaser.Scene {
     // ];
 
     var polygon = new Phaser.Geom.Polygon([
-      [0, 0],
+      [0,0],
       [width, 0],
-      [width, height],
-      [0, height],
+      [width, 300],
+      [0, 300],
       [0, 0],
-      [5, 5],
-      [960, 5],
-      [960, 715],
-      [5, 715],
+      // [3, 5],
+      // [960, 5],
+      // [960, 715],
+      // [5, 715],
       // counterPositions[0],
       // counterPositions[1],
       // counterPositions[2],
       // counterPositions[3],
       // counterPositions[0],
-      [0, 0],
+      // [0, 0],
     ]);
 
     this.spawnZone = polygon;
@@ -321,21 +339,20 @@ export default class GameScene extends Phaser.Scene {
         customer.body.stop();
 
         if (this.player.health === 0) {
-        console.log(GAMEOVER)
+        // console.log(GAMEOVER)
           return;
         }
         this.physics.world.removeCollider(collider);
-        console.log(this.player.health);
+        // console.log(this.player.health);
         this.hearts[this.player.health - 1].destroy();
         this.player.health--;
+        // console.log(this.player.health)
 
 
       });
     });
   }
-  isAlive() {
-    return this.player.health === 0;
-  }
+  
 }
 
 // TODO: Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.

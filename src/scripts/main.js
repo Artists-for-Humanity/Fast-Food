@@ -30,7 +30,7 @@ const config = {
   canvas: document.getElementById('game'),
   width: 960,
   height: 720,
-  backgroundColor: '#FFA633',
+  backgroundColor: '#F8D289',
 
   //magical #s (bad coding)
 

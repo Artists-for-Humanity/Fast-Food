@@ -306,6 +306,9 @@ h1 {
     transition: all 150ms ease-in-out;
 }
 
+.gradients { 
+    fill: 
+}
 #thumbUP:hover {
     fill: green; 
     box-shadow: 0 0 10px 0 green inset, 0 0 10px 4px green;
@@ -334,5 +337,10 @@ h1 {
     margin-bottom:20px;
     margin-left:50px;
     margin-right:50px;
+}
+
+a{
+    color:rgba(103, 27, 22, 1);
+    font-family: "Play Bold";
 }
 
