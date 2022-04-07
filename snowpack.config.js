@@ -14,6 +14,6 @@ module.exports = {
     /* ... */
   },
   buildOptions: {
-    out: 'build',
+    out: 'docs',
   },
 };
