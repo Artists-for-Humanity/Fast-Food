@@ -58,6 +58,6 @@ const config = {
     disableWebAudio: true,
   },
 };
-console.log("Testing build");
+console.log("Testing build 2");
 // Initialize game instance
 new Phaser.Game(config);
