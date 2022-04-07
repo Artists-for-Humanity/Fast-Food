@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "phaser": "./phaser.js",
-    "webfontloader": "./webfontloader.js"
-  }
-}
