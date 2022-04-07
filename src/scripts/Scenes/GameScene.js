@@ -130,6 +130,8 @@ export default class GameScene extends Phaser.Scene {
     this.laserGroup = this.physics.add.group();
     this.addEvents();
 
+  
+
 
 
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
@@ -153,21 +155,11 @@ export default class GameScene extends Phaser.Scene {
         // this.hearts[this.player.health - 1].destroy();
         // this.player.health--;
       }
-      // if (customer.foodSprite === 'food2' && this.player.health > 0) {
-      //   this.globalState.incrementScore();
-      //   this.setScoreText();
-      // }
-      // if (customer.foodSprite === 'food3' && this.player.health > 0) {
-      //   this.globalState.incrementScore();
-      //   this.setScoreText();
-      // } 
 
 
-      // if (this.player.health > 0) {
-      //   this.hearts[this.player.health - 1].destroy();
-      //   this.player.health--;
-      // }
     });
+
+
   }
 
   addEvents() {
@@ -231,8 +223,6 @@ export default class GameScene extends Phaser.Scene {
       this.createCustomers();
       this.numCusCount = 10;
     }
-    // this.globalState.resetScore();
-    // this.player.health = 5;
 
     if (this.player.health === 0) {
       this.scene.start('GameOverScene');
@@ -243,7 +233,6 @@ export default class GameScene extends Phaser.Scene {
         this.customers[i].destroy();
         this.numCusCount = 0;
       }
-      // console.log(this.hearts);
       for (var i = 0; i < this.player.health; i++) {
         this.hearts.push(new Heart(this, (i + 1) * 60, 50));
       }
@@ -287,16 +276,12 @@ export default class GameScene extends Phaser.Scene {
       [width, 300],
       [0, 300],
       [0, 0],
-      // [3, 5],
-      // [960, 5],
-      // [960, 715],
-      // [5, 715],
+
       // counterPositions[0],
       // counterPositions[1],
       // counterPositions[2],
       // counterPositions[3],
       // counterPositions[0],
-      // [0, 0],
     ]);
 
     this.spawnZone = polygon;
@@ -379,4 +364,13 @@ export default class GameScene extends Phaser.Scene {
 
 }
 
-// TODO: Load in enemies one at a time, different intervals. Load some enemies off screen/ increase range for their spawn. Change number of enemies/speed of enemies to increase difficulty at a certain score.
+
+//TODO: health bar for customers
+//    - create bar using draw function in phaser
+//    - 
+//    - 
+//TODO: timer for cool down
+//    - run a constant clock
+//    - measure time from when object hits counter + delay (5s)
+//    - .destroy custumer once timer is up
+//      - make sure every customer is running it's opwn timer (if one customer hits it shouldnt start the timer for all enemies to destroy after 5 s--> case by case)
