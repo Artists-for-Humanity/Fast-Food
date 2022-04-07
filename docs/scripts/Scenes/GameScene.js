@@ -26,7 +26,7 @@ export default class GameScene extends Phaser.Scene {
     this.foodSprites = [];
     this.spawnZone;
     this.customerTextures = [];
-    this.numCustomers = 20;
+    this.numCustomers = 5;
     this.laserGroup;
     this.hearts = [];
     this.scoreText;
@@ -299,6 +299,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createCustomers() {
+    console.log("CUSTOMERS", this.numCustomers);
     for (let i = 0; i < this.numCustomers; i++) {
       let rt = this.add.renderTexture(-100, -100, 140, 140);
       const customerSprite = this.customerSprites[Math.floor(Math.random() * 8)];
