@@ -28,19 +28,19 @@ export default class GameOverScene extends Phaser.Scene {
     this.quit.setInteractive();
 
     this.quit.on('pointerdown', () => {
-      console.log('reachme 00')
+      console.log('menu')
       this.scene.start('MenuScene');
 
     });
 
     this.menu.on('pointerdown', () => {
-      console.log('reachme 00')
-      this.scene.start('LevelPassedScene');
+      console.log('level passed')
+      this.scene.start('LevelpassedScene');
 
     });
 
     this.playAgain.on('pointerdown', () => {
-      console.log('reachme 00')
+      // console.log('game')
       this.scene.start('GameScene');
 
     });

@@ -3,6 +3,7 @@ import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
 import GlobalState from './Scenes/GlobalState';
 import GameOverScene from './Scenes/GameOverScene';
+
 import LevelPassedScene from './Scenes/LevelPassedScene';
 
 /* 
@@ -45,7 +46,8 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, GameScene, GameOverScene, LevelPassedScene],
+  scene: [MenuScene, GameScene, GameOverScene,  LevelpassedScene],
+
   plugins: {
     global: [{
       key: 'GlobalState',
