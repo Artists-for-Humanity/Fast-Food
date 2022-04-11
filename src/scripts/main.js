@@ -3,7 +3,8 @@ import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
 import GlobalState from './Scenes/GlobalState';
 import GameOverScene from './Scenes/GameOverScene';
-import LevelpassedScene from './Scenes/LevelpassedScene';
+
+import LevelPassedScene from './Scenes/LevelPassedScene';
 
 /* 
 Pseudocode
@@ -46,6 +47,7 @@ const config = {
     },
   },
   scene: [MenuScene, GameScene, GameOverScene,  LevelpassedScene],
+
   plugins: {
     global: [{
       key: 'GlobalState',
@@ -59,6 +61,6 @@ const config = {
     disableWebAudio: true,
   },
 };
-
+// console.log("Testing build 2");
 // Initialize game instance
 new Phaser.Game(config);
