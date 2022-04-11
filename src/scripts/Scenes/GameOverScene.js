@@ -40,7 +40,7 @@ export default class GameOverScene extends Phaser.Scene {
     });
 
     this.playAgain.on('pointerdown', () => {
-      console.log('game')
+      // console.log('game')
       this.scene.start('GameScene');
 
     });
