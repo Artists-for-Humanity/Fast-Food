@@ -45,7 +45,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [LevelPassedScene],
+  scene: [MenuScene, GameScene, GameOverScene, LevelPassedScene],
   plugins: {
     global: [{
       key: 'GlobalState',
@@ -59,6 +59,6 @@ const config = {
     disableWebAudio: true,
   },
 };
-console.log("Testing build 2");
+// console.log("Testing build 2");
 // Initialize game instance
 new Phaser.Game(config);

@@ -130,7 +130,7 @@ export default class GameScene extends Phaser.Scene {
     this.addEvents();
 
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
-      console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
+      // console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
       
       // Need to add conditionals for other food types, food2, food3, food 4
@@ -145,7 +145,7 @@ export default class GameScene extends Phaser.Scene {
         this.setScoreText();
         customer.destroy();
         this.numCusCount--;
-        console.log(this.customers);
+        // console.log(this.customers);
       } else if (this.player.health > 0) {
         // this.hearts[this.player.health - 1].destroy();
         // this.player.health--;
@@ -169,7 +169,7 @@ export default class GameScene extends Phaser.Scene {
   addEvents() {
     this.input.on('pointerdown', (pointerdown) => {
       this.shootLaser();
-      console.log('hello')
+      // console.log('hello')
     })
   }
   
