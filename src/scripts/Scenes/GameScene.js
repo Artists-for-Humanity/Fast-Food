@@ -29,7 +29,7 @@ export default class GameScene extends Phaser.Scene {
     this.hearts = [];
     this.scoreText;
     this.foodString = 'food1';
-    this.numCusCount = 10;
+    this.numCusCount = this.numCustomers;
     this.selectFood = 'food1';
     this.selectFood1;
     this.selectFood2;
@@ -130,31 +130,23 @@ export default class GameScene extends Phaser.Scene {
     this.laserGroup = this.physics.add.group();
     this.addEvents();
 
-  
+
 
 
 
     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
-      console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
       laser.destroy();
-
       // Need to add conditionals for other food types, food2, food3, food 4
-      //     this.physics.add.collider(this.customers, this.customers);
-      //     this.physics.add.overlap(this.laserGroup, this.customers, (customer, laser) => {
-      //       console.log(customer.foodSprite, customer.customerSprite, laser.foodSprite);
-      //       laser.destroy();
       //       // Need to add conditionals for other food types, food2, food3
 
       if (customer.foodSprite === laser.foodSprite) {
         this.globalState.incrementScore();
         this.setScoreText();
         customer.destroy();
+        // console.log(this.customers.length, this.customers)
         this.numCusCount--;
-        console.log(this.customers);
-      } else if (this.player.health > 0) {
-        // this.hearts[this.player.health - 1].destroy();
-        // this.player.health--;
-      }
+        // console.log(this.numCusCount);
+      } else if (this.player.health > 0) {}
 
 
     });
@@ -165,7 +157,6 @@ export default class GameScene extends Phaser.Scene {
   addEvents() {
     this.input.on('pointerdown', (pointerdown) => {
       this.shootLaser();
-      console.log('hello')
     })
   }
 
@@ -211,6 +202,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+    // console.log(Phaser.Math.Between(0, 4))
     this.delay += delta;
     this.timer();
 
@@ -219,19 +211,17 @@ export default class GameScene extends Phaser.Scene {
       customer.update();
     });
     this.addPickEvent();
+
     if (this.numCusCount === 0) {
-      this.createCustomers();
-      this.numCusCount = 10;
+      this.scene.start('LevelpassedScene');
     }
 
     if (this.player.health === 0) {
       this.scene.start('GameOverScene');
-      this.setScoreText();
 
       this.hearts = [];
       for (var i = 0; i < this.customers.length; i++) {
         this.customers[i].destroy();
-        this.numCusCount = 0;
       }
       for (var i = 0; i < this.player.health; i++) {
         this.hearts.push(new Heart(this, (i + 1) * 60, 50));
@@ -289,7 +279,8 @@ export default class GameScene extends Phaser.Scene {
 
   createCustomers() {
     for (let i = 0; i < this.numCustomers; i++) {
-      let rt = this.add.renderTexture(-100, -100, 140, 140);
+      // let rt = this.add.renderTexture(-100, -100, 140, 140);
+      let rt = this.add.renderTexture(100, 100, 140, 140);
       const customerSprite = this.customerSprites[Math.floor(Math.random() * 8)];
       const foodSprite = this.foodSprites[Math.floor(Math.random() * 3)];
 
@@ -327,14 +318,24 @@ export default class GameScene extends Phaser.Scene {
       const collider = this.physics.add.overlap(this.counter, customer, (counter, customer) => {
         customer.body.stop();
 
-        if (this.player.health === 0) {
-          // console.log(GAMEOVER)
-          return;
-        }
+
         this.physics.world.removeCollider(collider);
         // console.log(this.player.health);
-        this.hearts[this.player.health - 1].destroy();
-        this.player.health--;
+        // this.hearts[this.player.health - 1].destroy();
+        // this.player.health--;
+        // if (this.player.health === 0) {
+        //   // console.log(this.customers);
+        //   for (let i = 0; i < this.numCustomers; i++) {
+        //     this.customers.pop();
+        //   }
+        //   // this.customers.forEach((customer) => {
+        //   //   customer.destroy();
+
+        //   // });
+
+        //   return;
+        // }
+
         // console.log(this.player.health)
 
 
@@ -344,22 +345,71 @@ export default class GameScene extends Phaser.Scene {
 
   }
 
-  timer()
-  {
-    this.physics.add.overlap(this.customers, this.counter, () => {
-      if (this.isOverlapping === false){
+  timer() {
+    this.physics.add.overlap(this.customers, this.counter, (a, b) => {
+      if (this.isOverlapping === false) {
         this.isOverlapping = true;
         this.delay = 0;
-        console.log('hello');
+        // console.log('hello 00');
       }
-      if (this.isOverlapping === true && this.delay > 1000){
+      if (this.isOverlapping === true && this.delay > 1000) {
+        // console.log(this.customers);
+        a.destroy();
+        this.replaceCustomer(a);
+        this.loseHealth();
+        // console.log(this.customers);
         this.delay -= 1000;
         this.isOverlapping = false;
       }
     })
   }
 
- 
+
+  replaceCustomer(cust) {
+    const rPosition = this.getRandomPosition();
+
+    const texture1 = this.customerTextures[Phaser.Math.Between(0, 4)];
+    // const texture1 = this.customerTextures[0];
+
+    // console.log(texture1);
+
+    const customer1 = new Customer(this, rPosition.x, rPosition.y, texture1.texture, texture1.food, texture1.customer); /// accessing the key (using the index)
+
+    this.customers.push(customer1);
+
+    const collider1 = this.physics.add.overlap(this.counter, customer1, (counter, customer) => {
+      customer.body.stop();
+
+
+      this.physics.world.removeCollider(collider1);
+      // console.log(this.player.health);
+
+      // console.log(this.player.health)
+
+    });
+    // cust.tintBottomLeft = colors.red;
+    // cust.setTint(Phaser.Display.Color.GetColor(50, 50, 50));
+    // console.log(cust)
+    // cust.y = rPosition.y
+    // cust.x = rPosition.x
+  }
+
+  loseHealth() {
+    this.hearts[this.player.health - 1].destroy();
+    this.player.health--;
+    if (this.player.health === 0) {
+      // console.log(this.customers);
+      for (let i = 0; i < this.numCustomers; i++) {
+        this.customers.pop();
+      }
+      // this.customers.forEach((customer) => {
+      //   customer.destroy();
+
+      // });
+
+      return;
+    }
+  }
 
 
 }

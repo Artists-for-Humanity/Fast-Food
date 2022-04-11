@@ -38,8 +38,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   getAngle()  {
 
-    console.log(this.rotation);
-    
     const point1 = {
       x: this.scene.game.input.mousePointer.x,
       y: this.scene.game.input.mousePointer.y,

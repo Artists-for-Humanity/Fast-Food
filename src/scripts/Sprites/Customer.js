@@ -9,7 +9,7 @@ export default class Customer extends Phaser.Physics.Arcade.Sprite {
     // this.setCollideWorldBounds(true);
     this.setScale(0.75);
 
-    this.scene.physics.moveToObject(this, this.scene.player, 25);
+    this.scene.physics.moveToObject(this, this.scene.player, 100);
 
     this.foodSprite = foodSprite;
     this.customerSprite = customerSprite;
