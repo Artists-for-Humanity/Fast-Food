@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Prevent File not found (404) for favicon.ico -->
+    <link rel="icon" href="data:;base64,=">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fast! Food</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <img class="titleBox" src="assets/logo.svg">
+    <div class="container">
+        <canvas id="game" class="game"></canvas>
+        <div class="column">
+            <div class="box1">
+                <div class="header">HOW TO PLAY</div>
+                <div class="subtext">Select a food item and shoot it towards an incoming customer who has ordered the
+                    same item. Once you do not serve 3 customers in time, you must redo the level.</div>
+            </div>
+            <div class="box2">
+                <img src="assets/Frame 7.svg" alt="controls">  
+            </div>     
+        </div>
+    </div>
+    <div class="rateBox">
+        <span class= "rating">Like  this  game?</span>
+        <button class="thumbs" id="thumbUP" onclick="voteGame(true)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                    d="M96 32.04H32c-17.67 0-32 14.32-32 31.1v223.1c0 17.67 14.33 31.1 32 31.1h64c17.67 0 32-14.33 32-31.1V64.03C128 46.36 113.7 32.04 96 32.04zM467.3 240.2C475.1 231.7 480 220.4 480 207.9c0-23.47-16.87-42.92-39.14-47.09C445.3 153.6 448 145.1 448 135.1c0-21.32-14-39.18-33.25-45.43C415.5 87.12 416 83.61 416 79.98C416 53.47 394.5 32 368 32h-58.69c-34.61 0-68.28 11.22-95.97 31.98L179.2 89.57C167.1 98.63 160 112.9 160 127.1l.1074 160c0 0-.0234-.0234 0 0c.0703 13.99 6.123 27.94 17.91 37.36l16.3 13.03C276.2 403.9 239.4 480 302.5 480c30.96 0 49.47-24.52 49.47-48.11c0-15.15-11.76-58.12-34.52-96.02H464c26.52 0 48-21.47 48-47.98C512 262.5 492.2 241.9 467.3 240.2z" />
+            </svg>
+        </button>
+        <span id="up-score">0</span>
+        <button class="thumbs" id="thumbDOWN" onclick="voteGame(false)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path 
+                    d="M96 32.04H32c-17.67 0-32 14.32-32 31.1v223.1c0 17.67 14.33 31.1 32 31.1h64c17.67 0 32-14.33 32-31.1V64.03C128 46.36 113.7 32.04 96 32.04zM467.3 240.2C475.1 231.7 480 220.4 480 207.9c0-23.47-16.87-42.92-39.14-47.09C445.3 153.6 448 145.1 448 135.1c0-21.32-14-39.18-33.25-45.43C415.5 87.12 416 83.61 416 79.98C416 53.47 394.5 32 368 32h-58.69c-34.61 0-68.28 11.22-95.97 31.98L179.2 89.57C167.1 98.63 160 112.9 160 127.1l.1074 160c0 0-.0234-.0234 0 0c.0703 13.99 6.123 27.94 17.91 37.36l16.3 13.03C276.2 403.9 239.4 480 302.5 480c30.96 0 49.47-24.52 49.47-48.11c0-15.15-11.76-58.12-34.52-96.02H464c26.52 0 48-21.47 48-47.98C512 262.5 492.2 241.9 467.3 240.2z"/></svg>
+        </button>
+        <span id="down-score">0</span>
+    <!-- Share Button Here -->
+            <button class="share"> SHARE </button>
+    </div>
+
+    <div class="section2">
+        <div class="subtitle">About the Game</div>
+        <div class="column2">
+            <div class="object">
+                <div class="header2">BACKSTORY:</div>
+                <div class="subtext2">You work at a fast food restaurant in your city and your boss calls out sick. It's
+                    your responsibility to keep the place running all on your own. If you fail to serve every customer
+                    as fast as possible with the appropriate food, you are fired and lose the game. </div>
+            </div>
+            <div class="object">
+                <div class="header2">OBJECTIVE:</div>
+                <div class="subtext2">Customers run from all sides towards the center where you are serving food. To
+                    stop the customers you have to shoot the correct order at them before they reach your food station.
+                    If you succeed in shooting the correct order to all the customers in the time frame, you win and
+                    move on to the next level. As you move up in the levels, the difficulty levels increase (meaning the
+                    customers run faster at you and possibly have an order of multiple items).</div>
+            </div>
+            <div class="object">
+                <div class="header2">GAMEPLAY:</div>
+                <div class="subtext2">To select an item the gamer will use their mouse to scroll, and left click to
+                    shoot. To aim there is a constant trajectory arrow that will follow the pointer (from the mouse).
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="slideshow" src="assets/placeholder.png">
+    <div class="section3">
+        <div class="header2">MEET THE CREATORS:</div>
+        <div class="object2">
+            <div class="name">Maab Marei</div>
+            <div class="role">Project Lead</div>
+            <div class="description">Maab managed the team to ensure the game was completed successfully.</div>
+        </div>
+        <div class="object2">
+            <div class="name">Jamie De Los Santos</div>
+            <div class="role">Programming Lead</div>
+            <div class="description">Jamie lead programming of game code.</div>
+        </div>
+        <div class="object2">
+            <div class="name">Halima Mohamed</div>
+            <div class="role">Art Lead</div>
+            <div class="description">Halima lead the creation of art and sound assets for the game.</div>
+        </div>
+        <div class="object2">
+            <div class="name">Youssef Jorchi</div>
+            <div class="role">Research Lead</div>
+            <div class="description">Youssef lead the playtesting and evolution of the game.</div>
+        </div>
+    </div>
+    <hr>
+    <div class="footer">
+        <div class="header2">CHECK OUT OUR PROTOTYPES!</div>
+        <a href="https://www.figma.com/file/f1Qcku3NKQ90dyeU6Wqy7X/Phaser-Prototype?node-id=0%3A1" class="description">Figma Prototype</a>
+        <a href="https://drive.google.com/drive folders/1Krz0IqDr3f4tSDISzcev6L17uvg4J5lk?usp=sharing" class="description"> Paper Prototype</a>
+    </div>
+</body>
+
+<script type="module" src="scripts/main.js"> </script>
+
+<script>
+    function voteGame(thumbUp) {
+        if(thumbUp) {
+            upVoteCnt = document.getElementById("up-score")
+            vote = upVoteCnt.innerHTML
+            upVoteCnt.innerHTML = parseInt(vote) + 1
+        }
+        else {
+            downVoteCnt = document.getElementById("down-score")
+            vote = downVoteCnt.innerHTML
+            downVoteCnt.innerHTML = parseInt(vote) - 1
+        }
+    }
+</script>
+
+</html>

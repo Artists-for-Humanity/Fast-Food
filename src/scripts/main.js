@@ -5,6 +5,8 @@ import GlobalState from './Scenes/GlobalState';
 import GameOverScene from './Scenes/GameOverScene';
 import LevelpassedScene from './Scenes/LevelpassedScene';
 
+import LevelPassedScene from './Scenes/LevelPassedScene';
+
 /* 
 Pseudocode
 Opening Screen
@@ -45,7 +47,8 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, GameScene, GameOverScene,  LevelpassedScene],
+  scene: [MenuScene, GameScene, GameOverScene,  LevelPassedScene],
+
   plugins: {
     global: [{
       key: 'GlobalState',
@@ -59,6 +62,6 @@ const config = {
     disableWebAudio: true,
   },
 };
-
+// console.log("Testing build 2");
 // Initialize game instance
 new Phaser.Game(config);

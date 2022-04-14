@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
 
-export default class LevelpassedScene extends Phaser.Scene {
+
+export default class LevelPassedScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'LevelpassedScene',
+      key: 'LevelPassedScene',
     });
   }
 
@@ -23,22 +24,28 @@ export default class LevelpassedScene extends Phaser.Scene {
   create() {
     this.add.image(this.game.config.width / 3, this.game.config.height / 2, 'image');
     this.add.image(this.game.config.width / 2, this.game.config.height / 5, 'title');
-    this.add.image(this.game.config.width / 2, this.game.config.height / 1.1, 'menu');
-    this.add.image(this.game.config.width / 2, this.game.config.height / 1.3, 'nextLevel');
-    this.add.image(this.game.config.width - 75, 50, 'quit');
+    this.menu = this.add.image(this.game.config.width / 2, this.game.config.height / 1.1, 'menu');
+    this.menu.setInteractive();
+    this.nextLevel = this.add.image(this.game.config.width / 2, this.game.config.height / 1.3, 'nextLevel');
+    this.nextLevel.setInteractive();
+    this.quit = this.add.image(this.game.config.width - 75, 50, 'quit');
+    this.quit.setInteractive();
     this.add.image(this.game.config.width / 1.8, this.game.config.height / 2.3, 'tip');
     this.add.image(this.game.config.width / 1.8, this.game.config.height / 1.8, 'total');
 
-
-    this.input.keyboard.on('keydown-SPACE', () => {
+    this.menu.on('pointerdown', () => {
+      console.log("menu");
       this.scene.start('MenuScene');
+    })
+
+    this.nextLevel.on('pointerdown',() => {
+      console.log("game");
+      this.scene.start('GameScene');
     });
 
-    this.menu.on('pointerdown', () => {
-      console.log('menu')
+    this.quit.on('pointerdown',() => {
+      console.log("menu");
       this.scene.start('MenuScene');
-
-
     });
   }
 }
