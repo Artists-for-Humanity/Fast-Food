@@ -9,7 +9,7 @@ import Heart from '../Sprites/Heart';
 import {
   colors
 } from '../constants';
-import LevelpassedScene from './LevelpassedScene';
+import LevelPassedScene from './LevelPassedScene';
 export default class GameScene extends Phaser.Scene {
   player;
   container;
@@ -24,13 +24,11 @@ export default class GameScene extends Phaser.Scene {
     this.foodSprites = [];
     this.spawnZone;
     this.customerTextures = [];
-    this.numCustomers = 5;
+    this.numCustomers;
     this.laserGroup;
     this.hearts = [];
     this.scoreText;
-    this.foodString = 'food1';
-    this.numCusCount = this.numCustomers;
-    this.selectFood = 'food1';
+    this.selectedFood;
     this.selectFood1;
     this.selectFood2;
     this.selectFood3;
@@ -78,7 +76,13 @@ export default class GameScene extends Phaser.Scene {
       import.meta.url).href);
   }
 
+  resetGame() {
+    this.selectedFood = 'food1';
+    this.numCustomers = 1;
+  }
+
   create() {
+    this.resetGame();
     this.selectfood1 = this.add.sprite(this.game.config.width / 2, 660, 'food1').setScale(0.1).setDepth(1).setVisible(true);
     this.selectfood2 = this.add.sprite(this.game.config.width / 2, 660, 'food2').setScale(0.1).setDepth(1).setVisible(false);
     this.selectfood3 = this.add.sprite(this.game.config.width / 2, 660, 'food3').setScale(0.1).setDepth(1).setVisible(false);
@@ -140,14 +144,10 @@ export default class GameScene extends Phaser.Scene {
         this.globalState.incrementScore();
         this.setScoreText();
         customer.destroy();
-        // console.log(this.customers.length, this.customers)
-        this.numCusCount--;
-        // console.log(this.numCusCount);
+        this.numCustomers--;
       } else if (this.player.health > 0) {}
 
     });
-
-
   }
 
   addEvents() {
@@ -159,28 +159,28 @@ export default class GameScene extends Phaser.Scene {
 
   addPickEvent() {
     if (this.Qkey.isDown) {
-      this.foodString = 'food1';
+      this.selectedFood = 'food1';
       this.selectfood1.visible = true;
       this.selectfood2.visible = false;
       this.selectfood3.visible = false;
       this.selectfood4.visible = false;
     }
     if (this.Wkey.isDown) {
-      this.foodString = 'food2';
+      this.selectedFood = 'food2';
       this.selectfood1.visible = false;
       this.selectfood2.visible = true;
       this.selectfood3.visible = false;
       this.selectfood4.visible = false;
     }
     if (this.Ekey.isDown) {
-      this.foodString = 'food3';
+      this.selectedFood = 'food3';
       this.selectfood1.visible = false;
       this.selectfood2.visible = false;
       this.selectfood3.visible = true;
       this.selectfood4.visible = false;
     }
     if (this.Rkey.isDown) {
-      this.foodString = 'food4';
+      this.selectedFood = 'food4';
       this.selectfood1.visible = false;
       this.selectfood2.visible = false;
       this.selectfood3.visible = false;
@@ -189,7 +189,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   shootLaser() {
-    const projectile = new Projectile(this, this.player.x, this.player.y, this.foodString);
+    const projectile = new Projectile(this, this.player.x, this.player.y, this.selectedFood);
     this.laserGroup.add(projectile);
     projectile.fire(this.line.getAngle());
   }
@@ -209,8 +209,8 @@ export default class GameScene extends Phaser.Scene {
     });
     this.addPickEvent();
 
-    if (this.numCusCount === 0) {
-      this.scene.start('LevelpassedScene');
+    if (this.numCustomers === 0) {
+      this.scene.start('LevelPassedScene');
     }
 
     if (this.player.health === 0) {

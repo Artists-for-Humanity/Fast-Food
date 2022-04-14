@@ -46,7 +46,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, GameScene, GameOverScene,  LevelpassedScene],
+  scene: [MenuScene, GameScene, GameOverScene,  LevelPassedScene],
 
   plugins: {
     global: [{

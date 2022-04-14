@@ -35,7 +35,7 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.menu.on('pointerdown', () => {
       console.log('level passed')
-      this.scene.start('LevelpassedScene');
+      this.scene.start('MenuScene');
 
     });
 
