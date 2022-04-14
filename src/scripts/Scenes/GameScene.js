@@ -145,15 +145,16 @@ export default class GameScene extends Phaser.Scene {
         this.setScoreText();
         customer.destroy();
         this.numCustomers--;
-      } else if (this.player.health > 0) {}
+      }
 
     });
+
+
   }
 
   addEvents() {
     this.input.on('pointerdown', (pointerdown) => {
       this.shootLaser();
-
     })
   }
 
@@ -316,10 +317,6 @@ export default class GameScene extends Phaser.Scene {
         customer.body.stop();
 
 
-//         if (this.player.health === 0) {
-
-//           return;
-//         }
         this.physics.world.removeCollider(collider);
         // console.log(this.player.health);
         // this.hearts[this.player.health - 1].destroy();
@@ -424,4 +421,4 @@ export default class GameScene extends Phaser.Scene {
 //    - run a constant clock
 //    - measure time from when object hits counter + delay (5s)
 //    - .destroy custumer once timer is up
-//      - make sure every customer is running it's opwn timer (if one customer hits it shouldnt start the timer for all enemies to destroy after 5 s--> case by case)
+//    - make sure every customer is running it's opwn timer (if one customer hits it shouldnt start the timer for all enemies to destroy after 5 s--> case by case)

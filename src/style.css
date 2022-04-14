@@ -126,7 +126,6 @@ h1 {
     text-align:left;
     padding-right: 10px;
     font-weight:bold;
-
 }
 
 .head {
@@ -194,10 +193,6 @@ h1 {
 }
 
 .box1{
-
-    border-style:solid;
-    border-width:5px;
-    border-color:rgba(103, 27, 22, 1);
     padding:10px;
 }
 
@@ -310,7 +305,6 @@ h1 {
     fill: "red" !important; 
     box-shadow: 0 0 10px 0 red inset, 0 0 10px 4px red;
     transition: all 150ms ease-in-out;
-=
 }
 
 #thumbUP {
@@ -329,8 +323,8 @@ h1 {
     transform: rotate(180deg);
     border-color: green;
     color: #fff;
+   
      */
-
 }
 
 
@@ -345,7 +339,6 @@ h1 {
     float: right;
     right: 800px;
     position: absolute;
-
     cursor: pointer;
 }
 .slideshow {

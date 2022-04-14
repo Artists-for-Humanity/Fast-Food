@@ -1,6 +1,4 @@
 import Phaser from 'phaser';
-import WebFont from 'webfontloader';
-import { colors } from '../constants';
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
@@ -40,19 +38,11 @@ export default class GameOverScene extends Phaser.Scene {
     });
 
     this.playAgain.on('pointerdown', () => {
-      // console.log('game')
       this.scene.start('GameScene');
-
     });
 
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('MenuScene');
     });
   }
-
-  // onObjectClicked(this)
-  //   {
-  //     console.log('reachme 00')
-  //     this.scene.start('MenuScene');
-  //   }
 }

@@ -47,6 +47,5 @@ export default class LevelPassedScene extends Phaser.Scene {
       console.log("menu");
       this.scene.start('MenuScene');
     });
-
   }
 }

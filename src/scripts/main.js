@@ -3,6 +3,7 @@ import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
 import GlobalState from './Scenes/GlobalState';
 import GameOverScene from './Scenes/GameOverScene';
+import LevelpassedScene from './Scenes/LevelpassedScene';
 
 import LevelPassedScene from './Scenes/LevelPassedScene';
 
