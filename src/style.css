@@ -167,6 +167,10 @@ h1 {
     padding-top: 0px;
 }
 
+.game {
+    aspect-ratio: auto 960 / 720;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -290,7 +294,7 @@ h1 {
     padding-top:3px;
     box-shadow: transparent;
     /* width: 40px;
-    background: none;
+    background: none; 
     height: 30px;
     background-size: 50%;
     background-repeat: no-repeat; 
