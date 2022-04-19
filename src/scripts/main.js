@@ -5,7 +5,7 @@ import GlobalState from './Scenes/GlobalState';
 import GameOverScene from './Scenes/GameOverScene';
 import LevelpassedScene from './Scenes/LevelpassedScene';
 
-import LevelPassedScene from './Scenes/LevelPassedScene';
+import LevelPassedScene from './Scenes/LevelpassedScene';
 
 /* 
 Pseudocode
@@ -47,7 +47,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, GameScene, GameOverScene,  LevelPassedScene],
+  scene: [MenuScene, GameScene, GameOverScene,  LevelpassedScene],
 
   plugins: {
     global: [{
