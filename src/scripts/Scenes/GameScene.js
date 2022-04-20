@@ -9,7 +9,7 @@ import Heart from '../Sprites/Heart';
 import {
   colors
 } from '../constants';
-import LevelPassedScene from './LevelPassedScene';
+import LevelpassedScene from './LevelpassedScene';
 export default class GameScene extends Phaser.Scene {
   player;
   container;
@@ -78,7 +78,7 @@ export default class GameScene extends Phaser.Scene {
 
   resetGame() {
     this.selectedFood = 'food1';
-    this.numCustomers = 1;
+    this.numCustomers = 5;
   }
 
   create() {
@@ -200,7 +200,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update(time, delta) {
-    // console.log(Phaser.Math.Between(0, 4))
     this.delay += delta;
     this.timer();
 
@@ -211,7 +210,7 @@ export default class GameScene extends Phaser.Scene {
     this.addPickEvent();
 
     if (this.numCustomers === 0) {
-      this.scene.start('LevelPassedScene');
+      this.scene.start('LevelpassedScene');
     }
 
     if (this.player.health === 0) {
@@ -318,11 +317,9 @@ export default class GameScene extends Phaser.Scene {
 
 
         this.physics.world.removeCollider(collider);
-        // console.log(this.player.health);
         // this.hearts[this.player.health - 1].destroy();
         // this.player.health--;
         // if (this.player.health === 0) {
-        //   // console.log(this.customers);
         //   for (let i = 0; i < this.numCustomers; i++) {
         //     this.customers.pop();
         //   }
@@ -333,9 +330,6 @@ export default class GameScene extends Phaser.Scene {
 
         //   return;
         // }
-
-        // console.log(this.player.health)
-
 
       });
     });
@@ -348,14 +342,11 @@ export default class GameScene extends Phaser.Scene {
       if (this.isOverlapping === false) {
         this.isOverlapping = true;
         this.delay = 0;
-        // console.log('hello 00');
       }
       if (this.isOverlapping === true && this.delay > 1000) {
-        // console.log(this.customers);
         a.destroy();
         this.replaceCustomer(a);
         this.loseHealth();
-        // console.log(this.customers);
         this.delay -= 1000;
         this.isOverlapping = false;
       }
@@ -369,8 +360,6 @@ export default class GameScene extends Phaser.Scene {
     const texture1 = this.customerTextures[Phaser.Math.Between(0, 4)];
     // const texture1 = this.customerTextures[0];
 
-    // console.log(texture1);
-
     const customer1 = new Customer(this, rPosition.x, rPosition.y, texture1.texture, texture1.food, texture1.customer); /// accessing the key (using the index)
 
     this.customers.push(customer1);
@@ -379,15 +368,12 @@ export default class GameScene extends Phaser.Scene {
       customer.body.stop();
 
 
-      this.physics.world.removeCollider(collider1);
-      // console.log(this.player.health);
+      this.physics.world.removeCollider(collider1);;
 
-      // console.log(this.player.health)
 
     });
     // cust.tintBottomLeft = colors.red;
     // cust.setTint(Phaser.Display.Color.GetColor(50, 50, 50));
-    // console.log(cust)
     // cust.y = rPosition.y
     // cust.x = rPosition.x
   }
@@ -396,7 +382,6 @@ export default class GameScene extends Phaser.Scene {
     this.hearts[this.player.health - 1].destroy();
     this.player.health--;
     if (this.player.health === 0) {
-      // console.log(this.customers);
       for (let i = 0; i < this.numCustomers; i++) {
         this.customers.pop();
       }

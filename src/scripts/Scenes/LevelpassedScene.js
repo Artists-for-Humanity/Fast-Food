@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 
 
-export default class LevelPassedScene extends Phaser.Scene {
+export default class LevelpassedScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'LevelPassedScene',
+      key: 'LevelpassedScene',
     });
   }
 
