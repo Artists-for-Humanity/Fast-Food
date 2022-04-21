@@ -13,24 +13,24 @@
 
 <body>
 
-    <img class="titleBox" src="assets/logo.svg">
+    <img class="titleBox" src="assets/LOGO.svg">
     <div class="container">
         <canvas id="game" class="game"></canvas>
         <div class="column">
-            <div class= "headtext">
+            <div class="headtext">
                 Hasty and Tasty!
             </div>
             <div class="box1">
                 <img src="assets/howtoplay.svg" alt="how to play">
             </div>
             <div class="box2">
-                <img src="assets/controls.svg" alt="controls">  
-            </div>     
+                <img src="assets/controls.svg" alt="controls">
+            </div>
         </div>
     </div>
     <div class="rateBox">
         <div class="thumbbuttons">
-            <div class="rating">Like  this  game?</div>
+            <div class="rating">Like this game?</div>
             <div class="thumbs" id="thumbUP" onclick="voteGame(true)">
                 <img src="assets/thumbup.svg">
             </div>
@@ -40,8 +40,8 @@
             </div>
             <span id="down-score">0</span>
         </div>
-    <!-- Share Button Here -->
-          <img class="share" src="assets/shareButton.svg" alt="shareButton" >
+        <!-- Share Button Here -->
+        <img class="share" src="assets/shareButton.svg" alt="shareButton">
     </div>
 
     <div class="section2">
@@ -96,8 +96,10 @@
     <hr>
     <div class="footer">
         <div class="header2">CHECK OUT OUR PROTOTYPES!</div>
-        <a href="https://www.figma.com/file/f1Qcku3NKQ90dyeU6Wqy7X/Phaser-Prototype?node-id=0%3A1" class="description">Figma Prototype</a>
-        <a href="https://drive.google.com/drive folders/1Krz0IqDr3f4tSDISzcev6L17uvg4J5lk?usp=sharing" class="description"> Paper Prototype</a>
+        <a href="https://www.figma.com/file/f1Qcku3NKQ90dyeU6Wqy7X/Phaser-Prototype?node-id=0%3A1"
+            class="description">Figma Prototype</a>
+        <a href="https://drive.google.com/drive folders/1Krz0IqDr3f4tSDISzcev6L17uvg4J5lk?usp=sharing"
+            class="description"> Paper Prototype</a>
     </div>
 </body>
 
@@ -105,12 +107,11 @@
 
 <script>
     function voteGame(thumbUp) {
-        if(thumbUp) {
+        if (thumbUp) {
             upVoteCnt = document.getElementById("up-score")
             vote = upVoteCnt.innerHTML
             upVoteCnt.innerHTML = parseInt(vote) + 1
-        }
-        else {
+        } else {
             downVoteCnt = document.getElementById("down-score")
             vote = downVoteCnt.innerHTML
             downVoteCnt.innerHTML = parseInt(vote) - 1
