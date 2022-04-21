@@ -17,4 +17,15 @@ module.exports = {
     out: 'docs',
     metaUrlPath: 'snowpack',
   },
+  mount: {
+    src: {
+      url: '/',
+      dot: true
+    },
+    public: {
+      url: '/',
+      static: true,
+      dot: true
+    }
+  }
 };
