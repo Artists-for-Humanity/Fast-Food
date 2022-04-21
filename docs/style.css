@@ -116,12 +116,16 @@ h1 {
 .rateBox {
     margin:auto;
     width:70%;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
 }
 
 .rating { 
     font-size: 20px;
     text-align:left;
     padding-right: 10px;
+    font-weight:bold;
 }
 
 .head {
@@ -163,6 +167,10 @@ h1 {
     padding-top: 0px;
 }
 
+.game {
+    aspect-ratio: auto 960 / 720;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -181,10 +189,14 @@ h1 {
     ;
 }
 
+.headtext{
+    font-size:35px;
+    font-family: "Poppins Light";
+    display:flex;
+    justify-content: center;
+}
+
 .box1{
-    border-style:solid;
-    border-width:5px;
-    border-color:rgba(103, 27, 22, 1);
     padding:10px;
 }
 
@@ -265,65 +277,72 @@ h1 {
 
 .description {
     font-family: 'Lora';
-    font-size: 25px
+    font-size: 25px;
+    padding-left:20px;
+}
+
+.thumbbuttons{
+    margin-top:30px;
+    display:flex;
+    flex-direction:row;
 }
 
 #thumbDOWN {
-    width: 40px;
-    background: none;
+    cursor: pointer;
+    padding-left:15px;
+    padding-right:15px;
+    padding-top:3px;
+    box-shadow: transparent;
+    /* width: 40px;
+    background: none; 
     height: 30px;
-    /* background: url(./assets/thumbs-up-solid.svg);  */
     background-size: 50%;
     background-repeat: no-repeat; 
     border: none;
-    cursor: pointer;
     fill: rgb(255, 255, 255);
     border-color: red;
     color: #fff;
-    box-shadow: 0 0 40px 40px red inset, 0 0 0 0 red;
-    transition: all 150ms ease-in-out;
+    */
 }
 
 #thumbDOWN:hover {
-    fill: red; 
+    fill: "red" !important; 
     box-shadow: 0 0 10px 0 red inset, 0 0 10px 4px red;
+    transition: all 150ms ease-in-out;
 }
 
 #thumbUP {
-    width: 40px;
+    cursor: pointer;
+    padding-left:15px;
+    padding-right:15px;
+    padding-bottom:3px;
+    box-shadow: transparent;
+    /* width: 40px;
     background: none;
     height: 30px;
-    /* background: url(./assets/thumbs-up-solid.svg);  */
     background-size: 50%;
     background-repeat: no-repeat; 
     border: none;
-    cursor: pointer;
     fill: rgb(255, 255, 255);
     transform: rotate(180deg);
     border-color: green;
     color: #fff;
-    box-shadow: 0 0 40px 40px green inset, 0 0 0 0 green;
+   
+     */
+}
+
+
+#thumbUP:hover {
+    fill: 'green' !important; 
+    box-shadow: 0 0 10px 0 green inset, 0 0 10px 4px green;
     transition: all 150ms ease-in-out;
 }
 
-.gradients { 
-    fill: 
-}
-#thumbUP:hover {
-    fill: green; 
-    box-shadow: 0 0 10px 0 green inset, 0 0 10px 4px green;
-}
 
 .share { 
-    font-size: 15px;
-    font-family: 'Montserrat';
-    fill: white;
-    border: 1px solid rgba(103, 27, 22, 1);
     float: right;
     right: 800px;
     position: absolute;
-    height: 30px;
-    width: 60px;
     cursor: pointer;
 }
 .slideshow {
@@ -343,4 +362,5 @@ a{
     color:rgba(103, 27, 22, 1);
     font-family: "Play Bold";
 }
+
 

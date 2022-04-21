@@ -2,8 +2,6 @@ import * as __SNOWPACK_ENV__ from '../../snowpack/env.js';
 import.meta.env = __SNOWPACK_ENV__;
 
 import Phaser from '../../snowpack/pkg/phaser.js';
-import WebFont from '../../snowpack/pkg/webfontloader.js';
-import { colors } from '../constants.js';
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
@@ -31,31 +29,23 @@ export default class GameOverScene extends Phaser.Scene {
     this.quit.setInteractive();
 
     this.quit.on('pointerdown', () => {
-      console.log('reachme 00')
+      console.log('menu')
       this.scene.start('MenuScene');
 
     });
 
     this.menu.on('pointerdown', () => {
-      console.log('reachme 00')
-      this.scene.start('LevelPassedScene');
+      console.log('level passed')
+      this.scene.start('MenuScene');
 
     });
 
     this.playAgain.on('pointerdown', () => {
-      console.log('reachme 00')
       this.scene.start('GameScene');
-
     });
 
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('MenuScene');
     });
   }
-
-  // onObjectClicked(this)
-  //   {
-  //     console.log('reachme 00')
-  //     this.scene.start('MenuScene');
-  //   }
 }
