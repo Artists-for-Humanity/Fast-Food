@@ -17,8 +17,3 @@ jobs:
           node-version: 14.x
       - run: npm ci
       - run: npm run build
-      - name: Committing changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          author_name: Snowpack Build
-          author_email: actions@github.com
