@@ -6,7 +6,7 @@ import GameOverScene from './Scenes/GameOverScene';
 import LevelpassedScene from './Scenes/LevelpassedScene';
 
 import LevelPassedScene from './Scenes/LevelpassedScene';
-
+console.log("Test test");
 /* 
 Pseudocode
 Opening Screen
@@ -47,7 +47,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, GameScene, GameOverScene,  LevelpassedScene],
+  scene: [MenuScene, GameScene, GameOverScene, LevelpassedScene],
 
   plugins: {
     global: [{
