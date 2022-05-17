@@ -18,6 +18,3 @@ node_modules/
 /dist
 
 /docs
-
-!/docs/.gitkeep
-!/docs/.nojekyll
