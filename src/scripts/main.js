@@ -6,7 +6,6 @@ import GameOverScene from './Scenes/GameOverScene';
 import LevelpassedScene from './Scenes/LevelpassedScene';
 
 import LevelPassedScene from './Scenes/LevelpassedScene';
-console.log("Test test");
 /* 
 Pseudocode
 Opening Screen
@@ -62,6 +61,5 @@ const config = {
     disableWebAudio: true,
   },
 };
-// console.log("Testing build 2");
 // Initialize game instance
 new Phaser.Game(config);
