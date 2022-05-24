@@ -79,10 +79,14 @@ export default class GameScene extends Phaser.Scene {
   resetGame() {
     this.selectedFood = 'food1';
     this.numCustomers = 5;
+    //this.player.health = 5;
+    this.hearts = [];
   }
 
   create() {
+
     this.resetGame();
+  
     this.selectfood1 = this.add.sprite(this.game.config.width / 2, 660, 'food1').setScale(0.1).setDepth(1).setVisible(true);
     this.selectfood2 = this.add.sprite(this.game.config.width / 2, 660, 'food2').setScale(0.1).setDepth(1).setVisible(false);
     this.selectfood3 = this.add.sprite(this.game.config.width / 2, 660, 'food3').setScale(0.1).setDepth(1).setVisible(false);
@@ -209,6 +213,7 @@ export default class GameScene extends Phaser.Scene {
     });
     this.addPickEvent();
 
+  
     if (this.numCustomers === 0) {
       this.scene.start('LevelpassedScene');
     }
