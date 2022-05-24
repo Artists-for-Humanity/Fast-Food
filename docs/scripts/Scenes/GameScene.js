@@ -82,6 +82,7 @@ export default class GameScene extends Phaser.Scene {
   resetGame() {
     this.selectedFood = 'food1';
     this.numCustomers = 5;
+    this.player.health = 5;
   }
 
   create() {
