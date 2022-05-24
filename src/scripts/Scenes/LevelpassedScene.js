@@ -17,12 +17,12 @@ export default class LevelpassedScene extends Phaser.Scene {
     // this.nextLevel.setInteractive();
     this.quit = this.load.image('quit', new URL('../../assets/quitButton.png', import.meta.url).href);
     // this.quit.setInteractive();
-    this.load.image('tip', new URL('../../assets/tip.png', import.meta.url).href);
-    this.load.image('total', new URL('../../assets/total.png', import.meta.url).href);
+    // this.load.image('tip', new URL('../../assets/tip.png', import.meta.url).href);
+    // this.load.image('total', new URL('../../assets/total.png', import.meta.url).href);
   }
 
   create() {
-    this.add.image(this.game.config.width / 3, this.game.config.height / 2, 'image');
+    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'image');
     this.add.image(this.game.config.width / 2, this.game.config.height / 5, 'title');
     this.menu = this.add.image(this.game.config.width / 2, this.game.config.height / 1.1, 'menu');
     this.menu.setInteractive();
@@ -30,8 +30,8 @@ export default class LevelpassedScene extends Phaser.Scene {
     this.nextLevel.setInteractive();
     this.quit = this.add.image(this.game.config.width - 75, 50, 'quit');
     this.quit.setInteractive();
-    this.add.image(this.game.config.width / 1.8, this.game.config.height / 2.3, 'tip');
-    this.add.image(this.game.config.width / 1.8, this.game.config.height / 1.8, 'total');
+    // this.add.image(this.game.config.width / 1.8, this.game.config.height / 2.3, 'tip');
+    // this.add.image(this.game.config.width / 1.8, this.game.config.height / 1.8, 'total');
 
     this.menu.on('pointerdown', () => {
       console.log("menu");
