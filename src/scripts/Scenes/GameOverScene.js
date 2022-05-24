@@ -8,16 +8,17 @@ export default class GameOverScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('image', new URL('../../assets/fired.png', import.meta.url).href);
-    this.load.image('title', new URL('../../assets/yourFired.png', import.meta.url).href);
+    this.load.image('gameoverimage', new URL('../../assets/fired.png', import.meta.url).href);
+    this.load.image('gameovertitle', new URL('../../assets/yourFired.png', import.meta.url).href);
     this.load.image('menu', new URL('../../assets/menuButton.png', import.meta.url).href);
     this.playAgain = this.load.image('playAgain', new URL('../../assets/playAgainButton.png', import.meta.url).href);
     this.load.image('quit', new URL('../../assets/quitButton.png', import.meta.url).href);
   }
 
   create() {
-    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'image');;
-    this.add.image(this.game.config.width / 2, this.game.config.height / 5, 'title');
+    console.log("Did this run?")
+    this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'gameoverimage');;
+    this.add.image(this.game.config.width / 2, this.game.config.height / 5, 'gameovertitle');
     this.menu = this.add.image(this.game.config.width / 2, this.game.config.height / 1.1, 'menu');
     this.menu.setInteractive(); 
     this.playAgain = this.add.image(this.game.config.width / 2, this.game.config.height / 1.3, 'playAgain');
