@@ -16,7 +16,6 @@ export default class GameOverScene extends Phaser.Scene {
   }
 
   create() {
-    console.log("Did this run?")
     this.add.image(this.game.config.width / 2, this.game.config.height / 2, 'gameoverimage');;
     this.add.image(this.game.config.width / 2, this.game.config.height / 5, 'gameovertitle');
     this.menu = this.add.image(this.game.config.width / 2, this.game.config.height / 1.1, 'menu');
@@ -27,13 +26,11 @@ export default class GameOverScene extends Phaser.Scene {
     this.quit.setInteractive();
 
     this.quit.on('pointerdown', () => {
-      console.log('menu')
       this.scene.start('MenuScene');
 
     });
 
     this.menu.on('pointerdown', () => {
-      console.log('level passed')
       this.scene.start('MenuScene');
 
     });

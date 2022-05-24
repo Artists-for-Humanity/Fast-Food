@@ -34,17 +34,14 @@ export default class LevelpassedScene extends Phaser.Scene {
     // this.add.image(this.game.config.width / 1.8, this.game.config.height / 1.8, 'total');
 
     this.menu.on('pointerdown', () => {
-      console.log("menu");
       this.scene.start('MenuScene');
     })
 
     this.nextLevel.on('pointerdown',() => {
-      console.log("game");
       this.scene.start('GameScene');
     });
 
     this.quit.on('pointerdown',() => {
-      console.log("menu");
       this.scene.start('MenuScene');
     });
   }
